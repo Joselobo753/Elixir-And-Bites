@@ -1,0 +1,23 @@
+* {
+    background-color: black;
+}
+.imagen-inicio {
+    width: 100%;
+    height: auto;
+text-align: center;
+
+  }
+  
+  .imagen-inicio img {
+    width: 50%;
+    height: 500px;
+    object-fit: cover;
+    object-position: center; 
+    border: 5px solid black;
+  }
+
+  @media (max-width: 768px) {
+    .imagen-inicio img {
+      height: 300px;
+    }
+  }
