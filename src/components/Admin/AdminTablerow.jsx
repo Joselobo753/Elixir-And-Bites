@@ -1,21 +1,19 @@
 import { useState } from 'react';
 import AdminForm from '../Admin/AdminForm';
-// import AdminTable from '../Admin/AdminTable';
+import AdminTable from '../Admin/AdminTable';
 
-export default function AdminTablaRow() {
+const AdminTablaRow = () => {
   const [products, setProducts] = useState([]);
   const [editingIndex, setEditingIndex] = useState(null);
 
   const handleAddProduct = (data) => {
     if (editingIndex !== null) {
-      // Actualiza el producto existente
       const updatedProducts = products.map((product, index) =>
         index === editingIndex ? data : product
       );
       setProducts(updatedProducts);
       setEditingIndex(null);
     } else {
-      // Añade un nuevo producto
       setProducts([...products, data]);
     }
   };
@@ -46,4 +44,6 @@ export default function AdminTablaRow() {
       />
     </div>
   );
-}
+};
+
+export default AdminTablaRow;

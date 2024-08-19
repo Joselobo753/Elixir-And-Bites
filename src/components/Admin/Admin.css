@@ -2,6 +2,10 @@
     background-color: #1f1f1f;
 }
 
+#h1{
+    color: #bb86fc;
+}
+
 .admin-form {
     display: flex;
     flex-direction: column;
@@ -34,7 +38,7 @@
     padding: 10px;
     margin-top: 5px;
     border-radius: 5px;
-    border: 1px solid #bb86fc; /* Borde morado */
+    border: 1px solid #bb98e6; /* Borde morado */
     background-color: #2a2a2a; /* Fondo gris oscuro */
     color: white; /* Texto blanco */
   }
