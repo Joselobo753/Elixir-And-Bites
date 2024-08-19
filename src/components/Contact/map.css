@@ -3,19 +3,19 @@
     max-width: 600px;
     margin: 0 auto;
   }
-
+  
   .map-iframe {
     width: 100%;
-    height: 300px; /* Ajusta la altura para móviles /
+    height: 300px; 
   }
-
+  
   .contact-info {
     font-size: 1rem;
     color: #333;
   }
-
+  
   @media (min-width: 768px) {
     .map-iframe {
-      height: 450px; / Altura para pantallas más grandes */
+      height: 450px;
     }
   }

@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import RooTView from "../Views/routing/RooTView";
 import PublicView from "../Views/routing/PublicView";
 import PrivateView from "../Views/routing/PrivateView";
+import ContactView from "../Views/routing/ContactView";
 
 export const router = createBrowserRouter([
     {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "",
-                        element: <Contacto/>,
+                        element: <ContactView/>,
                     },
                 ],
             },
