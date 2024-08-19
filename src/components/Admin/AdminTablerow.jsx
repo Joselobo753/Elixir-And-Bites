@@ -1,0 +1,49 @@
+import { useState } from 'react';
+import AdminForm from '../Admin/AdminForm';
+// import AdminTable from '../Admin/AdminTable';
+
+export default function AdminTablaRow() {
+  const [products, setProducts] = useState([]);
+  const [editingIndex, setEditingIndex] = useState(null);
+
+  const handleAddProduct = (data) => {
+    if (editingIndex !== null) {
+      // Actualiza el producto existente
+      const updatedProducts = products.map((product, index) =>
+        index === editingIndex ? data : product
+      );
+      setProducts(updatedProducts);
+      setEditingIndex(null);
+    } else {
+      // Añade un nuevo producto
+      setProducts([...products, data]);
+    }
+  };
+
+  const handleEditProduct = (index) => {
+    setEditingIndex(index);
+  };
+
+  const handleDeleteProduct = (index) => {
+    setProducts(products.filter((_, i) => i !== index));
+  };
+
+  const handleViewProduct = (product) => {
+    alert(`Detalles del producto:\n\nNombre: ${product.titulo}\nDescripción: ${product.descripcion}\nImagen: ${product.imagen}\nCategoría: ${product.categorias}\nDisponible: ${product.disponible}\nPrecio: ${product.precio}\nOpciones Free: ${product.opcionesFree}`);
+  };
+
+  return (
+    <div>
+      <AdminForm 
+        onSubmit={handleAddProduct} 
+        productToEdit={editingIndex !== null ? products[editingIndex] : null} 
+      />
+      <AdminTable 
+        products={products} 
+        onEdit={handleEditProduct} 
+        onDelete={handleDeleteProduct} 
+        onView={handleViewProduct} 
+      />
+    </div>
+  );
+}
