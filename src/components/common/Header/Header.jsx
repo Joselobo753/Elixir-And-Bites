@@ -1,32 +1,62 @@
+import { Link } from "react-router-dom";
+
+import ReservationForm from "./Formnav1";
+import Logo from "./Logo";
+import RedesSociales from "./RedesSociales";
+
 const Header = () => {
   return (
-    <nav className="navbar bg-body-tertiary">
-  <div className="container-fluid">
-    <a className="navbar-brand" href="#">
-      <img src="../../../../public/potion.svg" alt="Logo" width="30" height="24" className="d-inline-block align-text-top" />
-      Bootstrap
-    </a>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarNav">
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Features</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Pricing</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
+    <nav className="navbar bg-body-dark">
+    <div className="container-fluid">
+      <Link className="navbar-brand" to="/">
+        <img
+          src="../../../../public/potion.svg"
+          alt="Logo"
+          width="30"
+          height="24"
+          className="d-inline-block align-text-top"
+        />
+        Elixir and Bites
+      </Link>
+      <button
+        className="btn"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasRight"
+        aria-controls="offcanvasRight"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+
+      <div
+        className="offcanvas offcanvas-end"
+        tabIndex="-1"
+        id="offcanvasRight"
+        aria-labelledby="offcanvasRightLabel"
+      >
+        <div className="offcanvas-header d-flex justify-content-between align-items-start">
+          <div className="flex-grow-1 d-flex justify-content-center">
+            <Logo />
+          </div>
+          <button
+            type="button"
+            className="btn-close mt-2 me-2"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div className="">
+          <RedesSociales />
+          <ReservationForm />
+        </div>
+        <div className="text-center mt-2">
+          <button className="bg-dark px-5 rounded">
+            <h3 className="text-white">Acerca de nosotros</h3>
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</nav>
-  )
-}
-export default Header
+  </nav>
+  );
+};
+export default Header;
