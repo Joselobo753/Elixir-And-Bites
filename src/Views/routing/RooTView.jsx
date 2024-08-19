@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 import Header from "../../components/common/Header/Header"
 
-const RooTView = () => {
+const RootView = () => {
   return (
     <>
     <Header/>
@@ -12,4 +12,4 @@ const RooTView = () => {
     </>
   )
 }
-export default RooTView
+export default RootView
