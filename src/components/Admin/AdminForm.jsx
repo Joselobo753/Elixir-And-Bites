@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
-import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
+import Input from '../ui/input/Input';
 import '../../components/Admin/Admin.css';
 
 const AdminForm = ({ onSubmit, productToEdit }) => {
@@ -19,107 +20,84 @@ const AdminForm = ({ onSubmit, productToEdit }) => {
 
   return (
     <>
-      <h1 id="h1" className='text-center'>
-        <hr />Carga de productos
-      </h1>
+      <h1 id="h1" className='text-center'><hr />Carga de productos</h1>
       <hr className='text-white'/>
       <form onSubmit={handleSubmit(handleFormSubmit)} className="admin-form">
-        <div className="form-group">
-          <label htmlFor="titulo">Producto</label>
-          <input 
-            type="text" 
-            placeholder="Nombre del Producto" 
-            {...register("titulo", { required: "El título es obligatorio", maxLength: { value: 20, message: "Máximo 20 caracteres" } })} 
-          />
-          {errors.titulo && <p className="error">{errors.titulo.message}</p>}
-        </div>
+        <Input
+          name="titulo"
+          label="Producto"
+          placeholder="Nombre del Producto"
+          register={register}
+          options={{ required: "El título es obligatorio", maxLength: { value: 20, message: "Máximo 20 caracteres" } }}
+          error={errors.titulo}
+        />
+        
+        <Input
+          name="descripcion"
+          label="Descripción del Producto"
+          placeholder="Descripción"
+          textarea
+          register={register}
+          options={{ required: "La descripción es obligatoria" }}
+          error={errors.descripcion}
+        />
 
-        <div className="form-group">
-          <label htmlFor="descripcion">Descripción del Producto</label>
-          <textarea 
-            placeholder="Descripción" 
-            {...register("descripcion", { required: "La descripción es obligatoria" })} 
-          />
-          {errors.descripcion && <p className="error">{errors.descripcion.message}</p>}
-        </div>
+        <Input
+          name="imagen"
+          label="Imagen"
+          placeholder="URL de la Imagen"
+          type="url"
+          register={register}
+          options={{ required: "La imagen es obligatoria" }}
+          error={errors.imagen}
+        />
 
-        <div className="form-group">
-          <label htmlFor="imagen" className="me-3">Imagen</label>
-          <input
-            className='text-white'   
-            type="url" 
-            placeholder="URL de la Imagen" 
-            {...register("imagen", { required: "La imagen es obligatoria" })} 
-          />
-          {errors.imagen && <p className="error">{errors.imagen.message}</p>}
-        </div>
+        <Input
+          name="categorias"
+          label="Categoría"
+          placeholder="Categoría"
+          register={register}
+          options={{ required: "La categoría es obligatoria" }}
+          error={errors.categorias}
+        />
 
-        <div className="form-group">
-          <label htmlFor="categorias">Categoría</label>
-          <input 
-            type="text" 
-            placeholder="Categoría" 
-            {...register("categorias", { required: "La categoría es obligatoria" })} 
-          />
-          {errors.categorias && <p className="error">{errors.categorias.message}</p>}
-        </div>
+        <Input
+          name="disponible"
+          label="Disponible"
+          select
+          selectOptions={[
+            { value: '', label: 'Selecciona una opción' },
+            { value: 'si', label: 'Sí' },
+            { value: 'no', label: 'No' },
+          ]}
+          register={register}
+          options={{ required: "La disponibilidad es obligatoria" }}
+          error={errors.disponible}
+        />
 
-        <div className="form-group">
-          <label htmlFor="disponible" className="me-3">Disponible</label>
-          <select className='text-white' {...register("disponible", { required: "La disponibilidad es obligatoria" })}>
-            <option className="text-white" value="">Selecciona una opción</option>
-            <option className="text-white" value="si">Sí</option>
-            <option className="text-white" value="no">No</option>
-          </select>
-          {errors.disponible && <p className="error">{errors.disponible.message}</p>}
-        </div>
+        <Input
+          name="precio"
+          label="Precio"
+          type="number"
+          placeholder="Precio"
+          register={register}
+          options={{ required: "El precio es obligatorio", min: { value: 1, message: "El precio debe ser mayor que 0" } }}
+          error={errors.precio}
+        />
 
-        <div className="form-group">
-          <label htmlFor="precio">Precio</label>
-          <input 
-            type="number" 
-            placeholder="Precio" 
-            {...register("precio", { 
-              required: "El precio es obligatorio", 
-              min: { value: 1, message: "El precio debe ser mayor que 0" }
-            })} 
-          />
-          {errors.precio && <p className="error">{errors.precio.message}</p>}
-        </div>
-
-        <div className="form-group">
-          <label>Opciones Free</label>
-          <div>
-            <label>
-              <input
-                className='ml-2 me-1'      
-                type="radio" 
-                value="vegetariano" 
-                {...register("opcionesFree")} 
-              />
-              Vegetariano
-            </label>
-            <label>
-              <input 
-                className='ml-2 me-1'  
-                type="radio" 
-                value="vegano" 
-                {...register("opcionesFree")} 
-              />
-              Vegano
-            </label>
-            <label>
-              <input
-                className='ml-2 me-1'      
-                type="radio" 
-                value="celíaco" 
-                {...register("opcionesFree")} 
-              />
-              Celíaco
-            </label>
-          </div>
-          {errors.opcionesFree && <p className="error">{errors.opcionesFree.message}</p>}
-        </div>
+        <Input
+          name="opcionesFree"
+          label="Opciones Free"
+          select
+          selectOptions={[
+            { value: 'vegetariano', label: 'Vegetariano' },
+            { value: 'vegano', label: 'Vegano' },
+            { value: 'celíaco', label: 'Celíaco' },
+          ]}
+          register={register}
+          options={{ required: "Debes seleccionar una opción" }}
+          error={errors.opcionesFree}
+        />
 
         <input type="submit" value="Cargar" className="submit-button" />
       </form>

@@ -8,25 +8,30 @@ const AdminTablaRow = () => {
 
   const handleAddProduct = (data) => {
     if (editingIndex !== null) {
+      // Actualiza el producto existente en la lista
       const updatedProducts = products.map((product, index) =>
         index === editingIndex ? data : product
       );
       setProducts(updatedProducts);
-      setEditingIndex(null);
+      setEditingIndex(null); // Termina el estado de edición
     } else {
+      // Agrega un nuevo producto a la lista
       setProducts([...products, data]);
     }
   };
 
   const handleEditProduct = (index) => {
+    // Establece el índice del producto a editar y carga los datos en el formulario
     setEditingIndex(index);
   };
 
   const handleDeleteProduct = (index) => {
+    // Elimina el producto de la lista
     setProducts(products.filter((_, i) => i !== index));
   };
 
   const handleViewProduct = (product) => {
+    // Muestra una alerta con los detalles del producto
     alert(`Detalles del producto:\n\nNombre: ${product.titulo}\nDescripción: ${product.descripcion}\nImagen: ${product.imagen}\nCategoría: ${product.categorias}\nDisponible: ${product.disponible}\nPrecio: ${product.precio}\nOpciones Free: ${product.opcionesFree}`);
   };
 
