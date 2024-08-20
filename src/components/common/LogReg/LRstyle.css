@@ -216,9 +216,9 @@ h6 span{
   position: absolute;
   top: 0;
   left: 18px;
-  height: 48px;
+  height: 38px;
   font-size: 24px;
-  line-height: 48px;
+  line-height: 38px;
   text-align: left;
   color: red;
   -webkit-transition: all 200ms linear;
