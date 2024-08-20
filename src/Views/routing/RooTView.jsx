@@ -3,7 +3,7 @@ import Header from "../../components/common/Header/Header"
 
 const RootView = () => {
   return (
-    <>
+    <>    
     <Header/>
     <main>
         <Outlet/>
