@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import RooTView from "../Views/routing/RooTView";
 import PublicView from "../Views/routing/PublicView";
 import PrivateView from "../Views/routing/PrivateView";
-import ContactView from "../Views/routing/ContactView";
+import AboutUsView from "../Views/routing/AboutUsView";
 
 export const router = createBrowserRouter([
     {
@@ -18,8 +18,8 @@ export const router = createBrowserRouter([
                         element: <p>Home</p>,
                     },
                     {
-                        path: "",
-                        element: <ContactView/>,
+                        path: "AbaoutUs",
+                        element: <AboutUsView/>,
                     },
                 ],
             },
