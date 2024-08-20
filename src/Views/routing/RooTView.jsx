@@ -5,7 +5,7 @@ import ButtonLR from "../../components/common/button/ButtonLR"
 import ModalLR from "../../components/common/LogReg/ModalLR"
 
 
-const RooTView = () => {
+const RootView = () => {
   return (
     <>
     <Header/>
@@ -18,4 +18,4 @@ const RooTView = () => {
     </>
   )
 }
-export default RooTView
+export default RootView
