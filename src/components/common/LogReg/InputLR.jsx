@@ -4,21 +4,21 @@ const InputLR = (props) => {
   const { name, type = "text", error, register, options, placeholder = "Ingrese un texto", icon } = props;
 
   return (
-    <>
+    <div className="form-group">
       <input
-        className={`form-style ${error ? "is-invalid" : ""}`}
+        className={` ${error ? "form-style-error" : "form-style pb-2"}`}
         id={`${name}-input`}
         type={type}
         placeholder={placeholder}
         {...register(name, options)} 
-        />
+       />
      {error ? (
       <i className={`input-icon-error bi bi-exclamation-diamond-fill `}></i>
 ) : (
   icon && <i className={`input-icon ${icon}`}></i>
 )}
-  {error ? ( <p className="text-white">Revise el campo</p> ) : ( <p></p>)}
-        </>
+  {error ? ( <p className="text-white text-start">{error?.message} </p> ) : ( <p></p>)}
+        </div>
   );
 };
 
