@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import ReservationForm from "./Formnav1";
+
 import Logo from "./Logo";
 import RedesSociales from "./RedesSociales";
 
@@ -47,7 +47,7 @@ const Header = () => {
         </div>
         <div className="">
           <RedesSociales />
-          <ReservationForm />
+          
         </div>
         <div className="text-center mt-2">
           <button className="bg-dark px-5 rounded">
