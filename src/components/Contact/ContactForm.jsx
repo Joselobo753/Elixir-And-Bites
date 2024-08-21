@@ -1,8 +1,15 @@
 import { useForm } from "react-hook-form";
-import Input from "../ui/input/Input";
 import { useState } from "react";
+
+import Input from "../ui/input/Input";
 import Swal from "sweetalert2";
 import Map from "../Contact/Map";
+import "./ContacStyle.css";
+import {
+  sendEmailToClient,
+  sendEmailToRestaurant,
+} from "../../utilities/sendEmail.js";
+import { sendContactData } from "../../api/contact.js";
 
 const ContactForm = () => {
   const {
@@ -18,23 +25,51 @@ const ContactForm = () => {
     console.log(data);
 
     Swal.fire({
-      title: "Formulario enviado",
-      text: "Gracias por contactarnos!",
-      icon: "success",
+      title: "Estas a punto de enviar un email",
+      text: "¿Estás seguro de enviarlo?",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, enviar!",
+      confirmButtonColor: "#3085d6",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        sendContactData(data)
+          .then(() => {
+            return Promise.all([
+              sendEmailToClient(data),
+              sendEmailToRestaurant(data),
+            ]);
+          })
+
+          .then(() => {
+            Swal.fire({
+              title: "Enviado",
+              text: "Tu email fue enviado con exito!",
+              icon: "success",
+            });
+            reset();
+            setResetCount(true);
+            setTimeout(() => setResetCount(false), 0);
+          })
+          .catch(() => {
+            Swal.fire({
+              title: "Error",
+              text: "Hubo un error al enviar el email",
+              icon: "error",
+            });
+          });
+      }
     });
-
-    reset();
-    setResetCount(true);
-    setTimeout(() => setResetCount(false), 0);
   };
-
   return (
     <>
       <form
         onSubmit={onSubmitRHF(handleSubmit)}
-        className="bg-body-tertiary rounded shadow m-5 text-center"
+        className="form-container mt-5 text-center"
       >
-        <h1>Contactanos!</h1>
+        <h1>Mandanos tu consulta!</h1>
         <Input
           className="m-3"
           error={errors.issue}
@@ -197,7 +232,7 @@ const ContactForm = () => {
           resetCount={resetCount}
         />
         <div className="text-center mt-3">
-          <button className="btn btn-primary mb-3" type="submit">
+          <button className="btn mb-3" type="submit">
             Enviar
           </button>
         </div>
