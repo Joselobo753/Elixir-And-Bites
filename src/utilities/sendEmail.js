@@ -3,8 +3,8 @@ import emailjs from "emailjs-com";
 export const sendEmailToClient = (data) => {
   return emailjs
     .send(
-      "service_8zberdz",
-      "template_a0cdhz8",
+      "service_jfcaxoe",
+      "template_ho4rd9v",
       {
         name: data.name,
         lastname: data.lastname,
@@ -13,7 +13,7 @@ export const sendEmailToClient = (data) => {
         message: data.message,
         to_email: data.email,
       },
-      "oHlowk37N8JMvbYiC"
+      "VaOMmTVQfY_WO-5KA"
     )
     .then(
       (response) => {
@@ -28,17 +28,17 @@ export const sendEmailToClient = (data) => {
 export const sendEmailToRestaurant = (data) => {
   return emailjs
     .send(
-      "service_8zberdz",
-      "template_q01xpm8",
+      "service_jfcaxoe",
+      "template_ho4rd9v",
       {
         name: data.name,
         lastname: data.lastname,
         email: data.email,
         issue: data.issue,
         message: data.message,
-        to_email: "lamilabar899@gmail.com",
+        to_email: "ExilirAndBite@gmail.com",
       },
-      "oHlowk37N8JMvbYiC"
+      "VaOMmTVQfY_WO-5KA"
     )
     .then(
       (response) => {

@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { postContacts } from "../../api/contact.js";
+import {
+  sendEmailToClient,
+  sendEmailToRestaurant,
+} from "../../utilities/sendEmail.js";
 
 import Input from "../ui/input/Input";
 import Swal from "sweetalert2";
 import Map from "../Contact/Map";
 import "./ContacStyle.css";
-import {
-  sendEmailToClient,
-  sendEmailToRestaurant,
-} from "../../utilities/sendEmail.js";
-import { sendContactData } from "../../api/contact.js";
 
 const ContactForm = () => {
   const {
@@ -35,7 +35,7 @@ const ContactForm = () => {
       confirmButtonColor: "#3085d6",
     }).then((result) => {
       if (result.isConfirmed) {
-        sendContactData(data)
+        postContacts(data)
           .then(() => {
             return Promise.all([
               sendEmailToClient(data),
@@ -63,13 +63,16 @@ const ContactForm = () => {
       }
     });
   };
+
   return (
     <>
+    
+    <h1 className="mt-5">Exilir & Bite</h1>
       <form
         onSubmit={onSubmitRHF(handleSubmit)}
         className="form-container mt-5 text-center"
       >
-        <h1>Mandanos tu consulta!</h1>
+        <h2>¡Mándanos tu consulta!</h2>
         <Input
           className="m-3"
           error={errors.issue}
