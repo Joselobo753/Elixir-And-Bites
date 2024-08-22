@@ -1,7 +1,3 @@
-*{
-    background-color: #1f1f1f;
-}
-
 #h1{
     color: #bb86fc;
 }
@@ -42,11 +38,23 @@
     background-color: #2a2a2a; /* Fondo gris oscuro */
     color: white; /* Texto blanco */
   }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  input[type="file"]:focus,
+  textarea:focus {
+  border-color: #bb86fc; /* Cambiar borde al foco */
+  outline: none; /* Eliminar borde por defecto */
+}
   
   input[type="text"]::placeholder,
   input[type="number"]::placeholder,
   textarea::placeholder {
     color: #9e9e9e; /* Placeholder gris claro */
+  }
+
+  .product-table tr:hover {
+    background-color: #2a2a2a;
   }
   
   textarea {

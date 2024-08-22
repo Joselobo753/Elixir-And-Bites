@@ -3,6 +3,7 @@ import RooTView from "../Views/routing/RooTView";
 import PublicView from "../Views/routing/PublicView";
 import PrivateView from "../Views/routing/PrivateView";
 import Admin from "../Views/routing/Admin";
+import ContactView from "../Views/routing/ContactView";
 
 export const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ export const router = createBrowserRouter([
                     {
                         path: "",
                         element: <p>Home</p>,
+                    },
+                    {
+                        path: "Contact",
+                        element: <ContactView/>,
                     },
                 ],
             },

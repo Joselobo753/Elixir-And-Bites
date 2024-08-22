@@ -1,68 +1,84 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 
-const Input = ({
-  name,
-  type = 'text',
-  label,
-  error,
-  className = '',
-  register,
-  options,
-  placeholder = 'Ingrese un texto',
-  textarea = false,
-  selectOptions = [],
-  select = false
-}) => {
+const Input = (props) => {
+  const {
+    name,
+    type = "text",
+    label,
+    error,
+    className = "",
+    register,
+    options,
+    placeholder = "Ingrese un texto",
+    textarea = false,
+    maxLength,
+    onChange,
+    resetCount,
+  } = props;
+
+  const [internalCharCount, setInternalCharCount] = useState(0);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setInternalCharCount(value.length);
+    if (onChange) {
+      onChange(e);
+    }
+  };
+
+  useEffect(() => {
+    if (textarea) {
+      setInternalCharCount(
+        document.getElementById(`${name}-input`)?.value.length || 0
+      );
+    }
+  }, [name, textarea]);
+
+  useEffect(() => {
+    if (resetCount) {
+      setInternalCharCount(0);
+    }
+  }, [resetCount]);
+
   if (textarea) {
     return (
-      <fieldset className={`form-group ${className}`}>
-        <label htmlFor={`${name}-input`}>{label}</label>
+      <fieldset className={`form-floating ${className}`}>
         <textarea
-          className={`form-control ${error ? 'is-invalid' : ''}`}
+          className={`form-control ${error ? "is-invalid" : ""}`}
           id={`${name}-input`}
+          type={type}
+          {...register(name, options)}
           placeholder={placeholder}
-          {...register(name, options)}
+          maxLength={maxLength}
+          onChange={handleChange}
         />
-        {error && <div className='invalid-feedback'>{error.message}</div>}
-      </fieldset>
-    );
-  }
-
-  if (select) {
-    return (
-      <fieldset className={`form-group ${className}`}>
         <label htmlFor={`${name}-input`}>{label}</label>
-        <select
-          className={`form-control ${error ? 'is-invalid' : ''}`}
-          id={`${name}-input`}
-          {...register(name, options)}
-        >
-          <option value="">Selecciona una opción</option>
-          {selectOptions.map((opt, index) => (
-            <option key={index} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-        {error && <div className='invalid-feedback'>{error.message}</div>}
+        {maxLength && (
+          <div className="text-muted text-right">
+            {internalCharCount}/{maxLength}
+          </div>
+        )}
+        <div className="invalid-feedback">{error?.message}</div>
       </fieldset>
     );
   }
 
   return (
-    <fieldset className={`form-group ${className}`}>
-      <label htmlFor={`${name}-input`}>{label}</label>
+    <fieldset className={`form-floating ${className}`}>
       <input
-        className={`form-control ${error ? 'is-invalid' : ''}`}
+        className={`form-control ${error ? "is-invalid" : ""}`}
         id={`${name}-input`}
-        placeholder={placeholder}
         type={type}
         {...register(name, options)}
+        placeholder={placeholder}
       />
-      {error && <div className='invalid-feedback'>{error.message}</div>}
+      <label htmlFor={`${name}-input`}>{label}</label>
+      <div className="invalid-feedback">{error?.message}</div>
     </fieldset>
   );
 };
+export default Input;
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
@@ -76,11 +92,7 @@ Input.propTypes = {
   options: PropTypes.object,
   placeholder: PropTypes.string,
   textarea: PropTypes.bool,
-  select: PropTypes.bool,
-  selectOptions: PropTypes.arrayOf(PropTypes.shape({
-    value: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-  })),
+  maxLength: PropTypes.number,
+  onChange: PropTypes.func,
+  resetCount: PropTypes.bool,
 };
-
-export default Input;

@@ -1,0 +1,131 @@
+body{
+    background-color: #0d021f !important;
+}
+
+form {
+    background-color: #1c1c1c; 
+    min-width: 100% ; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 120px;
+  }
+  
+  form h2 {
+    color: #d4b3ff; 
+    margin-bottom: 20px;
+  }
+  
+  h1{
+    color: #cdb3f0 !important;
+  }
+
+  h2{
+    padding-bottom: 20px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #555; 
+    border-radius: 5px;
+    background-color: #2b2b2b; 
+    color: #ffffff; 
+    transition: all 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus,
+  select:focus {
+    width: 100%;
+    border-color: #9b59b6; 
+    box-shadow: 0 0 8px #9b59b6;
+    outline: none;
+    background-color: #2b2b2b;
+    color: #ffffff;
+  }
+  
+  label {
+    display: flex;
+    margin-bottom: 5px;
+    color: #d4b3ff; 
+  }
+  
+  label:focus,
+  label:active {
+    color: #d4b3ff;
+  }
+  
+  button[type="submit"] {
+    background-color: #9b59b6;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #8e44ad;
+    transform: scale(1.05);
+  }
+  
+  .map-container {
+    background-color: #ffffff;
+    margin-top: 20px;
+    border: 2px solid #555; 
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 70%; 
+    width: 100%; 
+    margin-left: auto;
+    margin-right: auto; 
+    padding: 20px 0px 20px 0px;
+  }
+  
+  .map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
+  }
+  
+  input[type="text"].error,
+  input[type="email"].error,
+  textarea.error,
+  select.error {
+    border-color: #e74c3c;
+  }
+  
+  input[type="text"].error:focus,
+  input[type="email"].error:focus,
+  textarea.error:focus,
+  select.error:focus {
+    box-shadow: 0 0 8px #e74c3c;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    font-size: 0.875em;
+  }
+
+  @media (max-width: 768px) {
+    .map-container {
+      max-width: 100%;
+      width: 100%;
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 250px;
+    }
+  }
+  
+  
