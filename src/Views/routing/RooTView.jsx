@@ -6,6 +6,7 @@ import ModalLR from "../../components/common/LogReg/ModalLR"
 
 
 const RootView = () => {
+
   return (
     <>
     <Header/>
