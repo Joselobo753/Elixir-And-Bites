@@ -1,8 +1,22 @@
 import Login from "./Login";
 import Registro from "./Registro";
+import { Modal } from "bootstrap";
 import "./LRstyle.css";
 
 const ModalLR = () => {
+  const closeModal = () => {
+    const modalElement = document.getElementById("modalLR");
+    if (modalElement) {
+      const modalInstance = Modal.getInstance(modalElement) || new Modal(modalElement);
+      modalInstance.hide();  
+      const backdrop = document.querySelector('.modal-backdrop');
+      if (backdrop) {
+        backdrop.classList.remove('show');
+        backdrop.remove();
+        
+      }
+    }
+  };
   return (
     <div
       className="modal fade"
@@ -12,11 +26,11 @@ const ModalLR = () => {
       aria-hidden="true"
     >
       <div className="modal-dialog">
-        <div className="modal-content text-center">
+        <div className="modal-content text-center py-5">
           
             <h6 className="mb-0 pb-3">
-              <span>Log In</span>
-              <span>Sign Up</span>
+              <span>Ingresar</span>
+              <span>Registrarse</span>
             </h6>
             <input
               className="checkbox"
@@ -30,12 +44,12 @@ const ModalLR = () => {
               <div className="card-3d-wrapper">
                 <div className="card-front">
                   <div className="center-wrap">
-                    <Login/>
+                    <Login closeModal={closeModal}/>
                     </div>
                 </div>
                 <div className="card-back">
                   <div className="center-wrap">
-                   <Registro/>
+                  <Registro closeModal={closeModal} /> 
                   </div>
                 </div>
               </div>
