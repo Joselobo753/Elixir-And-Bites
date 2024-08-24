@@ -16,6 +16,27 @@
       "dni": "123456789",
       "isAdmin": false
     }
-   
+  ],
+
+  "menu": [
+    {
+      "category": "Entradas",
+      "id": "161a",
+      "name": "Empanadas de Pollo",
+      "imageUrl": "https://tumilanesa.com.ar/wp-content/uploads/2023/05/empanadas-pollo-jugosas.jpg",
+      "description": "Exquisitas empanadas de pollo",
+      "price": 750,
+      "quantity": 150
+    },
+    {
+      "category": "Pizzas",
+      "id": "161b",
+      "name": "Pizza de Gangoso",
+      "imageUrl": "https://pbs.twimg.com/media/CpY9YBBUkAA-Pf6.jpg",
+      "description": "Llena de ricota ñami ñami",
+      "price": 1500,
+      "quantity": 150
+    }
   ]
 }
+

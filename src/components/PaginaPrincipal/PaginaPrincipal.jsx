@@ -3,7 +3,8 @@ import { useSession } from "../../constans/Stores/useSesion";
 import Header from "../common/Header/Header";
 import ModalLR from "../common/LogReg/ModalLR";
 import "./principal.css";
-import RedesSociales from "../common/Header/RedesSociales";
+
+import Footer from "../common/Footer/Footer";
 
 
 const PaginaPrincipal = () => {
@@ -27,48 +28,53 @@ const PaginaPrincipal = () => {
             <tbody>
               <tr className="table-row row1">
                 <td>Lunes a Miércoles</td>
-                <td className="pl-4 pr-4 pt-2">--------------</td>
+                <td className="pl-4 pr-4 pt-2">-----------</td>
                 <td>19:00 a 00:30</td>
               </tr>
 
               <tr className="table-row row2">
                 <td>Jueves y Viernes</td>
-                <td className="pl-4 pr-4 pt-2">--------------</td>
+                <td className="pl-4 pr-4 pt-2">-----------</td>
                 <td>19:00 a 01:30</td>
               </tr>
 
               <tr className="table-row row3">
                 <td>Sábado</td>
-                <td className="pl-4 pr-4 pt-2">--------------</td>
+                <td className="pl-4 pr-4 pt-2">-----------</td>
                 <td>19:00 a 05:30</td>
               </tr>
 
               <tr className="table-row row4">
                 <td>Domingo</td>
-                <td className="pl-4 pr-4 pt-2">--------------</td>
+                <td className="pl-4 pr-4 pt-2">-----------</td>
                 <td className="text-center">Cerrado</td>
               </tr>
             </tbody>
-          </table>
+          </table>  
         </div>
-
+        
+    
         <div className=" text-center p-4">
         {isLoggedIn ? (
-    
+          
       <Link to="/menu" className="btn bg-dark px-5 rounded-button my-5">
       <h2>Menu</h2>
     </Link>
     
                
   ) : (
-   
+   <>
      <button
       type="button"
       data-bs-toggle="modal"
       data-bs-target="#modalLR"
       className="my-1 rounded-button"
-    >Ingresar </button>
-      
+      >Ingresar </button>
+    <Link to="/menu" className="btn bg-dark px-5 rounded-button my-5">
+    <h2>Menu</h2>
+  </Link>
+      </>
+  
               )}
       
           
@@ -89,9 +95,7 @@ const PaginaPrincipal = () => {
         </div>
       </main>
 
-      <footer className="py-3"><RedesSociales/>
-      <p className="text-white text-center">Todos los derechos e izquierdos reservados</p>
-      </footer>
+      <Footer/>
     </>
   );
 };

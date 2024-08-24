@@ -9,7 +9,10 @@ const ButtonsLink = () => {
             <Link to="/Contact" className="bg-dark  rounded-button">
               <span>Contactanos</span>
             </Link>
+           
+          
           </div>
+          
   )
 }
 export default ButtonsLink

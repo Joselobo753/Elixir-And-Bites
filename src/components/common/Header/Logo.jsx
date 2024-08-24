@@ -8,7 +8,7 @@ const Logo = () => {
           alt="logo del local" 
           className="mx-auto d-block potion"
         />
-        <h1 className="mt-3">Elixir & Bites</h1>
+        <h1 className="mt-3 h1-titulo-enfasis">Elixir & Bites</h1>
 
         
       </div>
