@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: "",
-                        element: <p>Home</p>,
+                        element: <Welcome/>,
                     },
                     {
                         path: "menu",
@@ -29,6 +29,10 @@ export const router = createBrowserRouter([
                     {
                         path: "AboutUs",
                         element: <AboutUsView/>,
+                    },
+                    {
+                        path: "Contact",
+                        element: <ContactView/>,
                     },
                 ],
             },
