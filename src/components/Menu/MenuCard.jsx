@@ -16,16 +16,16 @@ const MenuCard = ({ menu, addToCart }) => {
   };
 
   return (
-    <div className="card mb-3">
+    <div className="card mb-3 text-light">
       <img
         src={menu.imageUrl}
         alt={menu.name}
         className="card-img-top"
       />
       <div className="card-body">
-        <h5 className="card-title">{menu.name}</h5>
-        <p className="card-text">{menu.description}</p>
-        <p className="card-text">${menu.price}</p>
+        <h5 className="card-title text-light">{menu.name}</h5>
+        <p className="card-text text-light">{menu.description}</p>
+        <p className="card-text text-light">${menu.price}</p>
         {/* Aquí puedes agregar botones o enlaces para acciones */}
         <div className="quantity-controls">
           <button className="btn btn-secondary" onClick={decreaseQuantity}>

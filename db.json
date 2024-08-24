@@ -21,6 +21,17 @@
             "price" : 1500,
             "quantity": "150"
 
+        },
+
+        {
+            "category": "Pizzas",
+            "id": "161c",
+            "name": "pizza napolitana ",
+            "imageUrl": "https://mandolina.co/wp-content/uploads/2023/08/pizza-napolitana-1080x550-1.png",
+            "description" : "tomate ajo y albahaca",
+            "price" : 2500,
+            "quantity": "150"
+
         }
     ]
     

@@ -1,90 +1,146 @@
 /* Contenedor que organiza las cards */
 .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
-    gap: 20px; /* Espacio entre las cards */
-    padding: 20px;
-  }
-  
-  /* Estilos básicos para la card */
-  .card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-    width: 400px;
-  }
-  
-  .card:hover {
-    transform: scale(1.05); /* Efecto hover */
-  }
-  
-  .card-img-top {
-    width: 100%;
-    height: 300px;
-    object-fit: fill;
-  }
-  
-  .card-body {
-    padding: 15px;
-  }
-  
-  .card-title {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-  }
-  
-  .card-text {
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  .card-actions {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 4px
-  }
-  
-  .card-actions .btn {
-    padding: 10px 15px;
-    font-size: 0.875rem;
-  }
-  .quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 4px; /* Reduce la separación entre los botones y el número */
-  }
-  .quantity-controls button {
-    padding: 6px 12px; /* Ajusta el tamaño del botón si es necesario */
-  }
-  
-  .quantity-controls span {
-    font-size: 1rem; /* Ajusta el tamaño del número si es necesario */
-  }
-  .btn-success{
-    margin-left: 100px;
-  }
-  
-  /* Adaptación responsiva */
-  @media (max-width: 768px) {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  margin-top: 60px; /* Espacio superior para evitar superposición con el dropdown */
+}
 
-    .menu-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
-        padding: 10px; /* Reduce el padding para pantallas pequeñas */
-      }
-    
-      .card {
-        max-width: 100%; /* Asegura que la tarjeta use el ancho completo disponible */
-      }
-    
-      .card-img-top {
-        height: 200px; /* Ajusta la altura de la imagen para pantallas muy pequeñas */
-      }
-    
-      .card-body {
-        padding: 10px; /* Reduce el padding dentro de la tarjeta para pantallas pequeñas */
-      }
+/* Estilos básicos para la card */
+.card {
+  border: 2px solid #25d366;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #25d366;
+  transition: transform 0.2s ease-in-out;
+  width: 400px;
+  z-index: 1; /* Asegura que las cards no tengan un z-index mayor que el dropdown */
+  --bs-card-bg:#201c1c !important;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 300px;
+  object-fit: fill;
+
+
+}
+
+.card-body {
+  padding: 15px;
+  background-color: #201c1c;
+
+}
+
+.card-title {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  font-size: 1rem;
+  color: #555;
+}
+
+.card-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.card-actions .btn {
+  padding: 10px 15px;
+  font-size: 0.875rem;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.quantity-controls button {
+  padding: 6px 12px;
+}
+
+.quantity-controls span {
+  font-size: 1rem;
+}
+
+.btn-success {
+  margin-left: 100px;
+}
+
+.btn-secondary {
+  background-color: #25d366 !important; 
+  
+}
+.btn-primary{
+  background-color: #25d366 !important; 
+
+}
+
+.category-dropdown {
+  position: fixed;
+  top: 20px; /* Ajusta según sea necesario */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #201c1c;
+  color: #25d366;
+  border: 1px solid #25d366;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Asegura que el dropdown esté por encima de otros elementos */
+}
+
+.category-dropdown:focus {
+  outline: none;
+  border-color: #25d366;
+}
+
+.category-dropdown option {
+  padding: 10px;
+  background-color: #201c1c;
+  color: #25d366;
+}
+
+/* Adaptación responsiva */
+@media (max-width: 768px) {
+  .menu-grid {
+    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    margin-top: 80px; /* Asegura que el dropdown no se superponga con las cards */
+    padding: 10px;
+    margin-bottom: 80px; /* Aumenta el margen inferior para el footer navbar */
   }
+
+  .card {
+    width: 100%;
+  }
+
+  .card-img-top {
+    height: 200px;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+  .category-dropdown {
+    top: 10px; /* Ajusta el espacio superior en pantallas pequeñas */
+    font-size: 14px; /* Reduce el tamaño de la fuente para pantallas pequeñas */
+    width: 85%;
+    z-index: 10;
+ /* Asegura que el dropdown no ocupe todo el ancho de la pantalla */
+  }
+  .card:hover {
+    transform: none; /* Elimina el efecto hover en pantallas móviles */
+  }
+}
