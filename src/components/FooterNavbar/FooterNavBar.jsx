@@ -6,12 +6,12 @@ import "../FooterNavbar/footerNavBar.css"
 
 const FooterNavbar = ({ totalAmount, onCartClick }) => {
     return (
-        <div className="footer-navbar">
-          <div className="footer-content">
-            <span className="footer-item ">
+        <div className="navbar-footer">
+          <div className="content-footer">
+            <span className="item-footer ">
                 Total: <strong>${totalAmount.toFixed(2)}</strong>
               </span>
-            <div className="footer-nav-icon" onClick={onCartClick}>
+            <div className="footer-icon" onClick={onCartClick}>
             <FontAwesomeIcon icon={faShoppingCart} />
             </div>
           </div>

@@ -1,62 +1,35 @@
-/* Contenedor que organiza las cards */
-.menu-grid {
+.menu-cart {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
-  margin-top: 60px; /* Espacio superior para evitar superposición con el dropdown */
+  margin-top: 60px;
 }
 
-/* Estilos básicos para la card */
-.card {
+.card-styles {
   border: 2px solid #25d366;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 6px #25d366;
   transition: transform 0.2s ease-in-out;
   width: 400px;
-  z-index: 1; /* Asegura que las cards no tengan un z-index mayor que el dropdown */
+  z-index: 1; 
   --bs-card-bg:#201c1c !important;
 }
 
-.card:hover {
+.card-styles:hover {
   transform: scale(1.05);
 }
 
-.card-img-top {
+.card-image {
   width: 100%;
   height: 300px;
   object-fit: fill;
-
-
 }
 
-.card-body {
+.card-styles-body {
   padding: 15px;
   background-color: #201c1c;
-
-}
-
-.card-title {
-  font-size: 1.25rem;
-  margin-bottom: 10px;
-}
-
-.card-text {
-  font-size: 1rem;
-  color: #555;
-}
-
-.card-actions {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-}
-
-.card-actions .btn {
-  padding: 10px 15px;
-  font-size: 0.875rem;
 }
 
 .quantity-controls {
@@ -73,20 +46,15 @@
   font-size: 1rem;
 }
 
-.btn-success {
+.button-cart {
   margin-left: 100px;
 }
 
-.btn-secondary {
-  background-color: #25d366 !important; 
-  
-}
-.btn-primary{
-  background-color: #25d366 !important; 
-
+.button {
+  background-color: #25d366 !important ;   
 }
 
-.category-dropdown {
+.select-category {
   position: fixed;
   top: 20px; /* Ajusta según sea necesario */
   left: 50%;
@@ -99,34 +67,34 @@
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Asegura que el dropdown esté por encima de otros elementos */
+  z-index: 1000; 
 }
 
-.category-dropdown:focus {
+.select-category:focus {
   outline: none;
   border-color: #25d366;
 }
 
-.category-dropdown option {
+.select-category option {
   padding: 10px;
   background-color: #201c1c;
   color: #25d366;
 }
 
-/* Adaptación responsiva */
+
 @media (max-width: 768px) {
-  .menu-grid {
-    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
-    margin-top: 80px; /* Asegura que el dropdown no se superponga con las cards */
+  .menu-cart {
+    grid-template-columns: 1fr; 
+    margin-top: 80px;
     padding: 10px;
-    margin-bottom: 80px; /* Aumenta el margen inferior para el footer navbar */
+    margin-bottom: 80px; 
   }
 
-  .card {
+  .card-styles {
     width: 100%;
   }
 
-  .card-img-top {
+  .card-image {
     height: 200px;
   }
 
@@ -134,13 +102,13 @@
     padding: 10px;
   }
   .category-dropdown {
-    top: 10px; /* Ajusta el espacio superior en pantallas pequeñas */
-    font-size: 14px; /* Reduce el tamaño de la fuente para pantallas pequeñas */
+    top: 10px; 
+    font-size: 14px; 
     width: 85%;
     z-index: 10;
- /* Asegura que el dropdown no ocupe todo el ancho de la pantalla */
+ 
   }
-  .card:hover {
-    transform: none; /* Elimina el efecto hover en pantallas móviles */
+  .card-styles:hover {
+    transform: none; 
   }
 }
