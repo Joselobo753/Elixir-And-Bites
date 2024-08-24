@@ -36,6 +36,9 @@
   .footer-nav-icon:hover {
     color: #25d366;
   }
+  .footer-item{
+    color: #25d366;
+  }
   @media (max-width: 768px) {
     .footer-navbar {
       z-index: 20;

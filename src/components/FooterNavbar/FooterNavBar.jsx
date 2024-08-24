@@ -8,7 +8,7 @@ const FooterNavbar = ({ totalAmount, onCartClick }) => {
     return (
         <div className="footer-navbar">
           <div className="footer-content">
-            <span className="footer-item text-light">
+            <span className="footer-item ">
                 Total: <strong>${totalAmount.toFixed(2)}</strong>
               </span>
             <div className="footer-nav-icon" onClick={onCartClick}>

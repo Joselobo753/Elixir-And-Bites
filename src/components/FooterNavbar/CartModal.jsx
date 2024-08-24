@@ -23,19 +23,19 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm }) 
   };
 
   return (
-    <div className="modal-overlay text-light">
-      <div className="modal-contenta">
+    <div className="modal-carrito modal-overlay text-light ">
+      <div className="carta-modal">
         <h2>Carrito</h2>
         {cart.length === 0 ? (
           <p>Tu carrito está vacío.</p>
         ) : (
-          <ul className="cart-list">
+          <ul className="lista-carta">
             {cart.map((item) => (
               <li key={item.id} className="cart-item">
                 <img
                   src={item.imageUrl}
                   alt={item.name}
-                  className="cart-item-image"
+                  className="carta-modal-image"
                 />
                 <div className="cart-item-details">
                   <h3>{item.name}</h3>
