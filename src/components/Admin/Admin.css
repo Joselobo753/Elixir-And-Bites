@@ -1,6 +1,6 @@
 .admin-form {
   background-color: #1c1c1c;
-  min-width: 100%;
+  width: 100%;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
@@ -8,7 +8,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   max-width: 400px;
   margin: 0 auto;
 }
@@ -16,7 +15,6 @@
 .admin-form h2 {
   color: #d4b3ff;
   margin-bottom: 20px;
-  padding-bottom: 20px;
 }
 
 h1 {
@@ -24,10 +22,8 @@ h1 {
 }
 
 input[type="text"],
-input[type="email"],
-input[type="number"],
-input[type="file"],
-textarea[type="text"],
+input[type="url"],
+textarea,
 select {
   width: 100%;
   padding: 10px;
@@ -40,10 +36,8 @@ select {
 }
 
 input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="file"]:focus,
-textarea[type="text"]:focus,
+input[type="url"]:focus,
+textarea:focus,
 select:focus {
   border-color: #9b59b6;
   box-shadow: 0 0 8px #9b59b6;
@@ -153,16 +147,14 @@ textarea {
 }
 
 input[type="text"].error,
-input[type="email"].error,
-input[type="number"].error,
+input[type="url"].error,
 textarea.error,
 select.error {
   border-color: #e74c3c;
 }
 
 input[type="text"].error:focus,
-input[type="email"].error:focus,
-input[type="number"].error:focus,
+input[type="url"].error:focus,
 textarea.error:focus,
 select.error:focus {
   box-shadow: 0 0 8px #e74c3c;
@@ -170,7 +162,7 @@ select.error:focus {
 
 @media (max-width: 768px) {
   .admin-form {
-      max-width: 100%;
-      margin: 0 auto;
+    max-width: 100%;
+    margin: 0 auto;
   }
 }
