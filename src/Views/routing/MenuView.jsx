@@ -1,8 +1,9 @@
+
 import Menu from "../../components/Menu/Menu"
 
-export const MenuView = () => {
+const MenuView = () => {
   return (
     <Menu/>
   )
 }
-export default MenuView;
+export default MenuView

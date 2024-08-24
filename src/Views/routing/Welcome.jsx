@@ -6,7 +6,7 @@ const Welcome = () => {
     const [showMainPage, setShowMainPage] = useState(false);
 
     useEffect(() => {
-      const headerElement = document.querySelector('header'); // Asumiendo que el header tiene un elemento <header>
+      const headerElement = document.querySelector('header');
       if (headerElement) {
         headerElement.style.display = showMainPage ? 'block' : 'none';
       }

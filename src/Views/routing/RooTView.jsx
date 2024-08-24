@@ -1,14 +1,13 @@
 import { Outlet } from "react-router-dom"
-import Header from "../../components/common/Header/Header"
+
 
 const RootView = () => {
   return (
-    <>    
-    <Header/>
-    <main>
+    <>   
+    
+    <main className="flex-grow-1">
         <Outlet/>
     </main>
-    <footer>AGREGAR ALGO</footer>
     </>
   )
 }
