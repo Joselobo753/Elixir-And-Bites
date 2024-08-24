@@ -2,8 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import RooTView from "../Views/routing/RooTView";
 import PublicView from "../Views/routing/PublicView";
 import PrivateView from "../Views/routing/PrivateView";
-import Admin from "../Views/routing/Admin";
 import ContactView from "../Views/routing/ContactView";
+import AdminView from "../Views/routing/AdminView";
 
 export const router = createBrowserRouter([
     {
@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: "",
-                        element: <Admin />,
+                        element: <AdminView />,
                     },
                 ],
             },

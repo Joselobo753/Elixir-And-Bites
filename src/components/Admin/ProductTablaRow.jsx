@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import AdminForm from '../Admin/AdminForm';
-import AdminTable from '../Admin/AdminTable';
+import AdminForm from '../Admin/AdminForm.jsx';
+import AdminTable from '../Admin/AdminTable.jsx';
 
 const AdminTablaRow = () => {
   const [products, setProducts] = useState([]);
