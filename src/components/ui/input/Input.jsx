@@ -50,7 +50,7 @@ const Input = (props) => {
           id={`${name}-input`}
           type={type}
           {...register(name, options)}
-          placeholder="Escriba un mensaje, recuerde, aquí no se piden los números a las camareras"
+          placeholder={placeholder}
           icon={"bi bi-text-left"}
           maxLength={maxLength}
           onChange={handleChange}

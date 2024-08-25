@@ -233,7 +233,7 @@ const ContactForm = () => {
           }}
           register={register}
           textarea
-          
+          placeholder="Escriba un mensaje, recuerde, aquí no se piden los números a las camareras"
           maxLength={500}
           resetCount={resetCount}
           />

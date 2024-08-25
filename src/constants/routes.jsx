@@ -7,6 +7,7 @@ import MenuView from "../Views/routing/MenuView";
 import AboutUsView from "../Views/routing/AboutUsView";
 import ContactView from "../Views/routing/ContactView";
 import Error404View from "../Views/routing/Error404View";
+import AdminView from "../Views/routing/AdminView";
 
 export const router = createBrowserRouter([
   {
@@ -42,9 +43,9 @@ export const router = createBrowserRouter([
         element: <PrivateView />,
         children: [
           {
-            path: "",
-            element: <p></p>,
-          },
+            path: "admin",
+            element: <AdminView />,
+        },
         ],
       },
       {

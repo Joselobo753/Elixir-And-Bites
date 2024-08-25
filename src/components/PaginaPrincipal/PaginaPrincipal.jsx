@@ -1,17 +1,14 @@
 import { Link } from "react-router-dom";
 import { useSession } from "../../constans/Stores/useSesion";
-import Header from "../common/Header/Header";
+
 import ModalLR from "../common/LogReg/ModalLR";
 import "./principal.css";
-
-import Footer from "../common/Footer/Footer";
-
 
 const PaginaPrincipal = () => {
   const {isLoggedIn} = useSession()
   return (
     <>
-      <Header/>
+     
       <main>
         <div className="imagen-inicio">
           <img src="https://www.montpellier-tourisme.fr/app/uploads/montpelliertourisme/2022/11/thumbs/bar-g75e07b9f9_1920-1920x960-crop-1668432243.jpg"></img>
@@ -95,7 +92,7 @@ const PaginaPrincipal = () => {
         </div>
       </main>
 
-      <Footer/>
+
     </>
   );
 };
