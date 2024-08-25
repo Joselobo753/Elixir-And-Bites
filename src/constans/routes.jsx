@@ -7,6 +7,7 @@ import AboutUsView from "../Views/routing/AboutUsView";
 
 import Welcome from "../Views/routing/Welcome";
 import ContactView from "../Views/routing/ContactView";
+import AdminView from "../Views/routing/AdminView";
 
 
 export const router = createBrowserRouter([
@@ -66,7 +67,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: "",
-                        element: <p>admin</p>,
+                        element: <AdminView />,
                     },
                 ],
             },
