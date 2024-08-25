@@ -94,7 +94,7 @@ const Menu = () => {
         <option value="Pizzas">Pizzas</option>
       </select>
         
-      <div className="menu-cart menu-grid">
+      <div className="mx-2 menu-cart menu-grid">
         {filteredMenu.map((menuItem, index) => (
           <MenuCard
             menu={menuItem}

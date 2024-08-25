@@ -2,8 +2,17 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import "../FooterNavbar/cartModal.css"
 import Swal from 'sweetalert2';
+import Input from "../ui/input/Input";
+import { useForm } from "react-hook-form";
 
 const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm }) => {
+  const {
+    register,
+   
+    formState: { errors },
+    
+  } = useForm();
+  const [resetCount, setResetCount] = useState(false);
   const [tableNumber, setTableNumber] = useState('');
   const [comment, setComment] = useState('');
   const [isConfirmEnabled, setConfirmEnabled] = useState(false);
@@ -47,6 +56,7 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm }) 
         onConfirm(tableNumber, comment);
         setTableNumber('');
         setComment('');
+        setResetCount(true);
       }
     }
   };
@@ -75,44 +85,102 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm }) 
         {cart.length === 0 ? (
           <p>Tu carrito está vacío.</p>
         ) : (
-          <ul className="list-cart">
-            {cart.map((item) => (
-              <li key={item.id} className="cart-item">
-                <img
-                  src={item.imageUrl}
-                  alt={item.name}
-                  className="cart-modal-image"
-                />
-                <div className="cart-item-details">
-                  <h3>{item.name}</h3>
-                  <p>Precio: ${item.price.toFixed(2)}</p>
-                  <p>Cantidad: {item.quantity}</p>
-                  <p>Total: ${(item.price * item.quantity).toFixed(2)}</p>
-                  <button
-                    className="btn"
-                    onClick={() => handleRemoveFromCart(item.id)}
-                  >
-                    Eliminar
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <table className="table-responsive py-2">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">Nombre</th>
+      
+      <th scope="col">Cantidad</th>
+      <th scope="col">Total</th>
+      <th scope="col">🗑</th>
+    </tr>
+  </thead>
+  <tbody>
+    {cart.map((item) => (
+      <tr key={item.id}>
+        <td>
+          <img
+            src={item.imageUrl}
+            alt={item.name}
+            className="img-fluid cart-modal-image"
+            style={{ width: "50px" }}
+          />
+        </td>
+        <td>{item.name}</td>
+       
+        <td>{item.quantity}</td>
+        <td>${(item.price * item.quantity).toFixed(2)}</td>
+        <td>
+          <button
+            className="btn btn-danger"
+            onClick={() => handleRemoveFromCart(item.id)}
+          >
+            🗑
+          </button>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
         )}
+        <div className="form-group">
+
         <input
-          type="text"
-          placeholder="Ingrese el número de mesa (1-20)"
+          type="number"
+          placeholder="Ingrese el número de mesa "
           value={tableNumber}
           onChange={handleTableNumberChange}
-        />
+          className="form-style"
+          />
+          
+    <i className={`input-icon bi bi-hash`}></i>
+      <div className="py-2">
+
         {errorMessage && <p className="error-message">{errorMessage}</p>}
-                <textarea
-          placeholder="Deja un comentario (opcional)"
-          value={comment}
+          </div>
+          </div>
+                
+        <Input
+          className="m-3 textarea-contacto"
+          error={errors.message}
+          label="Mensaje"
+          name="message"
+          options={{
+            required: {
+              value: true,
+              message: "El mensaje es requerido",
+            },
+            minLength: {
+              value: 10,
+              message: "El campo mensaje debe tener al menos 10 caracteres",
+            },
+            maxLength: {
+              value: 500,
+              message:
+              "El campo mensaje debe tener un máximo de 500 caracteres",
+            },
+            pattern: {
+              value: /^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9\s.,!?()-]+$/,
+              message:
+              "El campo mensaje solo puede contener letras, números y ciertos caracteres de puntuación (. , ! ? () -)",
+            },
+            validate: {
+              noExtraSpaces: (value) =>
+                !/\s{2,}/.test(value) ||
+              "El campo mensaje no puede contener múltiples espacios consecutivos",
+              noOnlySpaces: (value) =>
+                value.trim().length > 0 ||
+              "El campo mensaje no puede estar compuesto solo de espacios en blanco",
+            },
+          }}
+          register={register}
+          textarea
+          placeholder="Escriba un mensaje, recuerde, aquí no se piden los números a las camareras"
+          maxLength={500}
+          resetCount={resetCount}
           onChange={handleCommentChange}
-          rows="4"
-          style={{ width: '100%', marginBottom: '10px' }}
-        />
+          />
         <div className="modal-footer">
           <h3>Total: ${totalAmount.toFixed(2)}</h3>
           <button

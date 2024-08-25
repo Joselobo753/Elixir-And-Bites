@@ -29,13 +29,7 @@
     margin-bottom: 20px; 
 }
 
-.cart-modal input {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
+
 
 .cart-modal button {
     padding: 10px 20px;

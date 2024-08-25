@@ -16,31 +16,50 @@ const MenuCard = ({ menu, addToCart }) => {
   };
 
   return (
-    <div className="card-styles card mb-3 text-light">
+    <div className=" col-12 mb-3 card-styles  text-light row">
+      <div className="row">
+        
+      
       <img
         src={menu.imageUrl}
         alt={menu.name}
-        className="card-image card-img-top"
+        className="col-6 image-class"
       />
-      <div className="card-body">
-        <h5 className=" card-title text-light">{menu.name}</h5>
-        <p className=" card-text text-light">{menu.description}</p>
-        <p className="  card-text text-light">$ {menu.price}</p>
-       
-        <div className="quantity-controls">
-          <button className="button btn btn-secondary" onClick={decreaseQuantity}>
-            -
-          </button>
-          <span className="mx-3">{quantity}</span>
-          <button className="button btn btn-primary" onClick={increaseQuantity}>
-            +
-          </button>
-          <button className="button-cart button btn btn-success " onClick={handleAddToCart}>
-            Añadir al Carrito
-          </button>
-        </div>
+      <div className=" col-6">
+        <h5 className="title-enfasis ">{menu.name}</h5>
+        <p className="  text-light">{menu.description}</p>
+        <h5 className="  card-text text-light">$ {menu.price}</h5>
+       </div>
+     </div>
+     <div className="py-1 d-flex justify-content-between">
+      <div className="quantity-div">
+
+     
+  <button
+    className="button-quantity"
+    onClick={decreaseQuantity}
+    disabled={quantity === 0}
+  >
+    ➖
+  </button>
+  <span className="mx-3">{quantity}</span>
+  <button className="button-quantity" onClick={increaseQuantity}>
+    ➕
+  </button> </div>
+  {quantity > 0 && (
+    <div className="text-end">
+
+    <button
+      className="button-card"
+      onClick={handleAddToCart}
+      >
+      Añadir al 🛒
+    </button>
       </div>
-    </div>
+  )}
+</div>
+      </div>
+   
   );
 };
 
