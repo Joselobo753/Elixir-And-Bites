@@ -65,8 +65,8 @@ const Menu = () => {
 
   const handleConfirmOrder = (number) => {
     setTableNumber(number);
-    console.log("Pedido confirmado para la mesa:", number); // Usar `number` directamente
-    setCart([]); // Vaciar el carrito después de confirmar el pedido
+    console.log("Pedido confirmado para la mesa:", number);
+    setCart([]);
     setIsModalOpen(false);
   };
 
@@ -84,19 +84,17 @@ const Menu = () => {
 
   return (
     <div>
-      {/* Dropdown for categories */}
       <select
         value={selectedCategory}
         onChange={handleCategoryChange}
-        className="category-dropdown"
+        className="select-category category-dropdown"
       >
         <option value="all">Todas</option>
         <option value="Entradas">Entradas</option>
         <option value="Pizzas">Pizzas</option>
-        {/* Add more categories as needed */}
       </select>
         
-      <div className="menu-grid">
+      <div className="menu-cart menu-grid">
         {filteredMenu.map((menuItem, index) => (
           <MenuCard
             menu={menuItem}

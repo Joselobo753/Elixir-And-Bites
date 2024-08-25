@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../Menu/menu.css"
 
 const MenuCard = ({ menu, addToCart }) => {
-  const [quantity, setQuantity] = useState(0); // Estado para manejar la cantidad de productos
+  const [quantity, setQuantity] = useState(0); 
 
   const increaseQuantity = () => setQuantity(quantity + 1);
   const decreaseQuantity = () => setQuantity(quantity > 0 ? quantity - 1 : 0);
@@ -11,31 +11,31 @@ const MenuCard = ({ menu, addToCart }) => {
   const handleAddToCart = () => {
     if (quantity > 0) {
       addToCart(menu, quantity);
-      setQuantity(0); // Opcional: Reiniciar cantidad después de añadir al carrito
+      setQuantity(0); 
     }
   };
 
   return (
-    <div className="card mb-3">
+    <div className="card-styles card mb-3 text-light">
       <img
         src={menu.imageUrl}
         alt={menu.name}
-        className="card-img-top"
+        className="card-image card-img-top"
       />
       <div className="card-body">
-        <h5 className="card-title">{menu.name}</h5>
-        <p className="card-text">{menu.description}</p>
-        <p className="card-text">${menu.price}</p>
-        {/* Aquí puedes agregar botones o enlaces para acciones */}
+        <h5 className=" card-title text-light">{menu.name}</h5>
+        <p className=" card-text text-light">{menu.description}</p>
+        <p className="  card-text text-light">$ {menu.price}</p>
+       
         <div className="quantity-controls">
-          <button className="btn btn-secondary" onClick={decreaseQuantity}>
+          <button className="button btn btn-secondary" onClick={decreaseQuantity}>
             -
           </button>
           <span className="mx-3">{quantity}</span>
-          <button className="btn btn-primary" onClick={increaseQuantity}>
+          <button className="button btn btn-primary" onClick={increaseQuantity}>
             +
           </button>
-          <button className="btn btn-success " onClick={handleAddToCart}>
+          <button className="button-cart button btn btn-success " onClick={handleAddToCart}>
             Añadir al Carrito
           </button>
         </div>
