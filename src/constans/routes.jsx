@@ -8,6 +8,7 @@ import AboutUsView from "../Views/routing/AboutUsView";
 import Welcome from "../Views/routing/Welcome";
 import ContactView from "../Views/routing/ContactView";
 import AdminView from "../Views/routing/AdminView";
+import MenuView from "../Views/routing/MenuView";
 
 
 export const router = createBrowserRouter([
@@ -25,7 +26,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "menu",
-                        element: <p>menu</p>,
+                        element: <MenuView/>,
                     },
                     {
                         path: "AboutUs",
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: "menu",
-                        element: <p>menu</p>,
+                        element: <menu/>,
                     },
                     {
                         path: "AboutUs",
@@ -56,17 +57,11 @@ export const router = createBrowserRouter([
                 ],
             },
             {
-                path: "admin",
-                element: <PublicView />,
-                children: [
-                ],
-            },
-            {
-                path: "admin",
+                path: "",
                 element: <PrivateView />,
                 children: [
                     {
-                        path: "",
+                        path: "admin",
                         element: <AdminView />,
                     },
                 ],

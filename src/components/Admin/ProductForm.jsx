@@ -110,8 +110,8 @@ const ProductForm = ({ initialData, onSubmit, onCancel }) => {
       <Input
           className="m-3 textarea-contacto"
           error={errors.message}
-          label="Mensaje"
-          name="message"
+          label="description"
+          name="description"
           options={{
             required: {
               value: true,
