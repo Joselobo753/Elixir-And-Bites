@@ -110,7 +110,7 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm, ta
                   </td>
                   <td>{item.name}</td>
                   <td>{item.quantity}</td>
-                  <td>${(item.price * item.quantity).toFixed(2)}</td>
+                  <td>${(item.price * item.quantity)}</td>
                   <td>
                     <button
                       className="btn btn-danger"

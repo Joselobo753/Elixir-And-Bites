@@ -28,7 +28,7 @@
   top: 40; /* Mantén el ícono en la parte superior del footer */
   left: 50%; /* Centra el ícono horizontalmente */
   transform: translate(-50%, -50%); /* Centra el ícono y lo mueve hacia arriba en 50% de su altura */
-  background-color: #fff;
+  background-color: #1e1e1e;
   padding: 10px;
   border-radius: 50%;
   width: 50px;
@@ -38,6 +38,8 @@
   align-items: center;
   cursor: pointer;
   box-shadow: 0px 4px 6px #25d366;
+  border: 2px solid #121212;
+  color: #25d366;
 }
 .footer-icon:hover {
   color: #25d366;
