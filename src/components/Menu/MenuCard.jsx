@@ -28,7 +28,7 @@ const MenuCard = ({ menu, addToCart }) => {
       <div className=" col-6">
         <h5 className="title-enfasis ">{menu.name}</h5>
         <p className="  text-light">{menu.description}</p>
-        <h5 className="  card-text text-light">$ {menu.price}</h5>
+        <h5 className="  title-enfasis">$ {menu.price}</h5>
        </div>
      </div>
      <div className="py-1 d-flex justify-content-between">

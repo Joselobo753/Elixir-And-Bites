@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import Bienvenida from '../../components/Bienvenida/Bienvenida';
 import PaginaPrincipal from '../../components/PaginaPrincipal/PaginaPrincipal';
+import { useSession } from '../../constans/Stores/useSesion';
 
 const Welcome = () => {
+  const {isLoggedIn} = useSession()
     const [showMainPage, setShowMainPage] = useState(false);
 
     useEffect(() => {
@@ -18,9 +20,15 @@ const Welcome = () => {
   
     return (
       <div>
-        {!showMainPage && <Bienvenida onComplete={handleWelcomeComplete} />}
-        {showMainPage && <PaginaPrincipal />}
-      </div>
+      {isLoggedIn ? (
+        <PaginaPrincipal />
+      ) : (
+        <div>
+          {!showMainPage && <Bienvenida onComplete={handleWelcomeComplete} />}
+          {showMainPage && <PaginaPrincipal />}
+        </div>
+      )}
+    </div>
     );
   };
 export default Welcome
