@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import Footer from "../../components/common/Footer/Footer";
-import Header from "../../components/common/Header/Header";
+
 
 const Error404View = () => {
   return (
     <>
-      <Header />
+     
       <div className="text-center pt-5">
         <div className="container">
 
@@ -23,7 +22,7 @@ const Error404View = () => {
             </Link>
         </div>
       </div>
-      <Footer />
+      
     </>
   );
 };

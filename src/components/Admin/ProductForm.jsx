@@ -160,7 +160,7 @@ const ProductForm = ({ initialData, onSubmit, onCancel }) => {
       onChange={handleChange}
       />
       </div>
-    <label htmlFor="available" className="form-check-label">Disponible</label>
+    <label htmlFor="available" className="form-check-label">{formData.available ? 'Disponible' : 'No disponible'}</label>
   </div>
 </div>
 

@@ -116,6 +116,7 @@ const Menu = () => {
           onClose={handleCloseModal}
           onRemoveFromCart={removeFromCart}
           onConfirm={handleConfirmOrder}
+          tableNumber={tableNumber} 
         />
       )}
     </div>

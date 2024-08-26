@@ -15,17 +15,19 @@
 .button-quantity{
   border: none;
   border-radius: 16px;
-  background-color: #ffd700;
+  background-color: #32CD32;
+  color: #ffffff;
 }
 .button-quantity:disabled{
+  color: #ffffff;
   
-  
-  background-color: #45c40a59;
+  background-color: #ff44008a;
 }
 .button-card{
   border: 1px solid seagreen;
   border-radius: 8px;
-  background-color: #25d366;
+  background-color: #32CD32 ;
+  box-shadow: 3px 3px 10px rgba(189,27,189,0.5);
 }
 .title-enfasis{
   color: #FFD700 ;

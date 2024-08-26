@@ -5,18 +5,18 @@
   right: 0;
   background-color: #201c1c;
   padding: 10px;
-  display: flex;
+ 
   justify-content: center; /* Centra el contenido horizontalmente */
   align-items: center;
+  border-radius: 50px 50px 0px 0px !important;
 }
+
 
 .content-footer {
   display: flex;
-  align-items: center;
-  gap: 60px;
-  width: 50%;
   justify-content: center;
-  max-width: 1200px; /* Ajusta según el diseño */
+  align-items: center;
+  position: relative;
 }
 
 .content-footer span {
@@ -24,11 +24,21 @@
 }
 
 .footer-icon {
-  font-size: 3rem;
+  position: absolute;
+  top: 40; /* Mantén el ícono en la parte superior del footer */
+  left: 50%; /* Centra el ícono horizontalmente */
+  transform: translate(-50%, -50%); /* Centra el ícono y lo mueve hacia arriba en 50% de su altura */
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
-  color: #2d9954;
+  box-shadow: 0px 4px 6px #25d366;
 }
-
 .footer-icon:hover {
   color: #25d366;
 }
