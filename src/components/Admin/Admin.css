@@ -179,6 +179,93 @@ select.error:focus {
 .form-check-input {
   margin-right: 5px; /* Espacio entre el checkbox y la etiqueta */
 }
+
+.edit-warning {
+  background-color: #ffeb3b;
+  color: #333;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-radius: 5px;
+} 
+
+.btn-danger {
+  background-color: #a4423a; /* Color marrón */
+  border: none;
+}
+
+.btn-warning {
+  background-color: #f5c542; /* Color amarillo */
+  border: none;
+}
+
+.btn-info {
+  background-color: #8c71a4; /* Color morado */
+  border: none;
+}
+
+.btn i {
+  color: black; /* Color del ícono negro */
+}
+
+.btn-danger i {
+  color: black; /* Ícono de color negro */
+}
+
+.btn-warning i {
+  color: black; /* Ícono de color negro */
+}
+
+.btn-info i {
+  color: black; /* Ícono de color negro */
+}
+
+/* Estilos generales para el modal */
+.custom-modal .modal-content {
+  background-color: #1a1a1a; /* Fondo oscuro */
+  color: #ffffff; /* Texto blanco */
+  border-radius: 10px;
+  border: none;
+}
+
+/* Estilos para el encabezado del modal */
+.custom-modal-header {
+  border-bottom: 1px solid #444; /* Línea sutil */
+}
+
+.custom-modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Estilos para el cuerpo del modal */
+.custom-modal-body {
+  padding: 20px;
+}
+
+.custom-modal-image {
+  border-radius: 8px;
+  margin-bottom: 20px;
+  max-width: 100%;
+}
+
+/* Estilos para el pie del modal */
+.custom-modal-footer {
+  border-top: 1px solid #444; /* Línea sutil */
+}
+
+/* Estilos adicionales para el botón de cerrar */
+.custom-modal .btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.custom-modal .btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+
 @media (max-width: 768px) {
   .admin-form {
     max-width: 100%;

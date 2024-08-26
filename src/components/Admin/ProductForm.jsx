@@ -39,6 +39,7 @@ const ProductForm = ({ initialData, onSubmit, onCancel }) => {
     e.preventDefault();
     onSubmit(formData);
   };
+  
 
   return (
     <form className="admin-form" onSubmit={handleSubmit}>
@@ -116,10 +117,10 @@ const ProductForm = ({ initialData, onSubmit, onCancel }) => {
           onChange={handleChange}
         >
           <option value="burgers">Burgers</option>
-          <option value="entrantes">Entrantes</option>
-          <option value="kids">Kids</option>
+          <option value="entrantes">Entradas</option>
+          <option value="tragos">Tragos</option>
           <option value="bebidas">Bebidas</option>
-          <option value="postres">Postres</option>
+          <option value="cervezas">Cervezas</option>
         </select>
       </div>
 

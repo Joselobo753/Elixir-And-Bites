@@ -1,4 +1,4 @@
-const BK_URL = import.meta.env.VITE_BACKEND_url;
+const BK_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const postLoginFn = async (data) => {
   try {

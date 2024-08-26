@@ -35,6 +35,10 @@ export const router = createBrowserRouter([
             path: "Contact",
             element: <ContactView />,
           },
+          {
+            path: "admin",
+            element: <AdminView />,
+        },
         ],
       },
 
@@ -42,10 +46,7 @@ export const router = createBrowserRouter([
         path: "",
         element: <PrivateView />,
         children: [
-          {
-            path: "admin",
-            element: <AdminView />,
-        },
+          
         ],
       },
       {
