@@ -25,11 +25,11 @@ export const router = createBrowserRouter([
                 ],
             },
             {
-                path: "admin",
+                path: "",
                 element: <PrivateView />,
                 children: [
                     {
-                        path: "",
+                        path: "admin",
                         element: <AdminView />,
                     },
                 ],

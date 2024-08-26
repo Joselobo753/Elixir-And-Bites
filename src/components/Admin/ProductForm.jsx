@@ -105,7 +105,6 @@ const ProductForm = ({ initialData, onSubmit, onCancel }) => {
           />
         </div>
       </div>
-
       <div className="form-group">
         <label htmlFor="category">Categoría</label>
         <select
