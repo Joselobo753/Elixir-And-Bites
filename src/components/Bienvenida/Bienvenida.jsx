@@ -26,10 +26,11 @@ const Bienvenida = ({ onComplete }) => {
   </div>
   </div>
 
-        <h1>Bienvenido a Elixir & Bites</h1>
+        <h1>Bienvenido <br/> a <br/> Elixir & Bites</h1>
         <img
-          src="https://thumbs.dreamstime.com/b/logo-de-comida-y-bebida-en-un-fondo-negro-vector-170720068.jpg"
+          src="https://www.lanacion.com.ar/resizer/v2/ademas-de-ofrecer-otros-estilos-y-mayor-variedad-4E6ANDTHRFD3HNUNN6D7G3BT7M.jpg?auth=a3e3f2b4aef3c55600607e90392d47750b18d989d35263fd4a0b3c9f11a70422&width=420&height=630&quality=70&smart=true"
           className="centered-bottom-image"
+          alt="bienvenida"
         ></img>
       </motion.div>
     </AnimatePresence>

@@ -43,23 +43,30 @@ const Input = (props) => {
 
   if (textarea) {
     return (
-      <fieldset className={`form-floating ${className}`}>
+      <fieldset className={`form-group`}>
+       
         <textarea
-          className={`form-control ${error ? "is-invalid" : ""}`}
+          className={`${error ? "form-style-error textarea-contacto" : "form-style pb-2 textarea-contacto"}`}
           id={`${name}-input`}
           type={type}
           {...register(name, options)}
           placeholder={placeholder}
+          icon={"bi bi-text-left"}
           maxLength={maxLength}
           onChange={handleChange}
         />
-        <label htmlFor={`${name}-input`}>{label}</label>
+        {error ? (
+      <i className={`input-icon-error bi bi-exclamation-diamond-fill `}></i>
+) : (
+   <i className={`input-icon bi bi-text-left`}></i>
+)}
         {maxLength && (
-          <div className="text-muted text-right">
-            {internalCharCount}/{maxLength}
+          <div className="text-muted text-right text-white char-counter">
+            <p className="text-white">{internalCharCount}/ {maxLength}</p>
           </div>
         )}
-        <div className="invalid-feedback">{error?.message}</div>
+        
+        {error ? ( <p className="text-white text-start">{error?.message} </p> ) : ( <p></p>)}
       </fieldset>
     );
   }

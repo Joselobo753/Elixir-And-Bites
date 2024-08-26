@@ -1,24 +1,23 @@
 import { Outlet } from "react-router-dom"
 import Header from "../../components/common/Header/Header"
+import Footer from "../../components/common/Footer/Footer"
 
-const RooTView = () => {
 
-import ButtonLR from "../../components/common/button/ButtonLR"
 
-import ModalLR from "../../components/common/LogReg/ModalLR"
+
 
 
 const RootView = () => {
 
   return (
-    <>
-    <Header/>
-    <main>
+    <>   
+    
+    <main className="flex-grow-1">
+      <Header/>
         <Outlet/>
-       <ButtonLR/>
-       <ModalLR/>
+   <Footer/>
+       
     </main>
-    <footer>AGREGAR ALGO</footer>
     </>
   )
 }

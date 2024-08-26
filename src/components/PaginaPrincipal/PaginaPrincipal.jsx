@@ -1,67 +1,14 @@
+import { Link } from "react-router-dom";
+import { useSession } from "../../constans/Stores/useSesion";
+
+import ModalLR from "../common/LogReg/ModalLR";
 import "./principal.css";
 
-
 const PaginaPrincipal = () => {
+  const {isLoggedIn} = useSession()
   return (
     <>
-      <header>
-        <nav className="navbar navbar-light">
-          <div className="container-fluid">
-            <a className="navbar-brand text-white" href="#">
-              <img
-                src="../../../../public/potion.svg"
-                alt="Logo"
-                width="35"
-                height="35"
-                className="d-inline-block align-text-top"
-              />
-              Elixir & Bites
-            </a>
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a
-                    className="nav-link active text-white"
-                    aria-current="page"
-                    href="#"
-                  >
-                    Home
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link text-white" href="#">
-                    Features
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link text-white" href="#">
-                    Pricing
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    className="nav-link disabled text-white"
-                    aria-disabled="true"
-                  >
-                    Disabled
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
+     
       <main>
         <div className="imagen-inicio">
           <img src="https://www.montpellier-tourisme.fr/app/uploads/montpelliertourisme/2022/11/thumbs/bar-g75e07b9f9_1920-1920x960-crop-1668432243.jpg"></img>
@@ -71,45 +18,64 @@ const PaginaPrincipal = () => {
             <thead>
               <tr>
                 <th className="table-row"></th>
-                <th className="table-row text-center text-warning">Horarios</th>
+                <th className="table-row text-center enfasis">Horarios</th>
                 <th className="table-row"></th>
               </tr>
             </thead>
             <tbody>
               <tr className="table-row row1">
                 <td>Lunes a Miércoles</td>
-                <td className="pl-4 pr-4 pt-2">--------------</td>
+                <td className="pl-4 pr-4 pt-2">-----------</td>
                 <td>19:00 a 00:30</td>
               </tr>
 
               <tr className="table-row row2">
                 <td>Jueves y Viernes</td>
-                <td className="pl-4 pr-4 pt-2">--------------</td>
+                <td className="pl-4 pr-4 pt-2">-----------</td>
                 <td>19:00 a 01:30</td>
               </tr>
 
               <tr className="table-row row3">
                 <td>Sábado</td>
-                <td className="pl-4 pr-4 pt-2">--------------</td>
+                <td className="pl-4 pr-4 pt-2">-----------</td>
                 <td>19:00 a 05:30</td>
               </tr>
 
               <tr className="table-row row4">
                 <td>Domingo</td>
-                <td className="pl-4 pr-4 pt-2">--------------</td>
+                <td className="pl-4 pr-4 pt-2">-----------</td>
                 <td className="text-center">Cerrado</td>
               </tr>
             </tbody>
-          </table>
+          </table>  
         </div>
-
+        
+    
         <div className=" text-center p-4">
-          <button
-            type="button"
-            className=" btn btn-lg btn-outline-warning bg-dark text-white pl-4 pr-4"
-          >
-            Ingresar
-          </button>
+        {isLoggedIn ? (
+          
+      <Link to="/menu" className="btn bg-dark px-5 rounded-button my-5">
+      <h2>Menu</h2>
+    </Link>
+    
+               
+  ) : (
+   <>
+     <button
+      type="button"
+      data-bs-toggle="modal"
+      data-bs-target="#modalLR"
+      className="my-1 rounded-button"
+      >Ingresar </button>
+    <Link to="/menu" className="btn bg-dark px-5 rounded-button my-5">
+    <h2>Menu</h2>
+  </Link>
+      </>
+  
+              )}
+      
+          
+    <ModalLR/>
         </div>
 
         <div className=" d-flex justify-content-center">
@@ -126,7 +92,7 @@ const PaginaPrincipal = () => {
         </div>
       </main>
 
-      <footer>ESTE ES EL FOOTER</footer>
+
     </>
   );
 };

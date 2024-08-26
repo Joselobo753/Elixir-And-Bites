@@ -6,13 +6,10 @@ import RedesSociales from "./RedesSociales";
 import HeaderUser from "./HeaderUser";
 import HeaderAdmin from "./HeaderAdmin";
 import ButtonsLink from "./buttonsLink";
+import { useSession } from "../../../constans/Stores/useSesion";
 
 const Header = () => {
-  const isLogin = true;
-  const isAdmin = false;
-  const user = {
-    name: "Eze amin",
-  };
+  const {user,isLoggedIn} = useSession()
   return (
     <nav className="navbar bg-body-dark">
       <div className="container-fluid">
@@ -54,18 +51,17 @@ const Header = () => {
             </button>
           </div>
               <Logo />
-          <div className="text-center">
-            {isAdmin ? "" : <RedesSociales />}
-
+              <div className="text-center">
+            {user && user.isAdmin ? "" : <RedesSociales />}
             <div>
-              {isLogin ? (
-                isAdmin ? (
+              {isLoggedIn ? (
+                user && user.isAdmin ? (
                   <HeaderAdmin />
                 ) : (
                   <HeaderUser user={user} />
                 )
               ) : (
-                <ButtonsLink/>
+                <ButtonsLink />
               )}
             </div>
           </div>

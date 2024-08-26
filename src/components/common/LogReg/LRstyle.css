@@ -45,8 +45,8 @@ h6 span{
 .full-height{
   min-height: 100vh;
 }
-[type="checkbox"]:checked,
-[type="checkbox"]:not(:checked){
+.checkbox:checked,
+.checkbox:not(:checked) {
   position: absolute;
   left: -9999px;
 }
@@ -288,3 +288,25 @@ h6 span{
 	width: auto;
 	display: block;
 }
+.button-submit{
+ 
+    background-color: var(--bg-s-color);
+    border: 1px solid var(--enfasis);
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 18px;
+    color: var(--text-color);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Arial', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 4px 8px 0 rgb(21, 21, 21);
+  }
+  
+  
+
+.button-submit:hover {
+    background-color: var(--enfasis);
+    color: black;
+  }
