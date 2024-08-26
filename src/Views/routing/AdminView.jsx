@@ -72,9 +72,8 @@ const AdminView = () => {
   };
 
   return (
-    <div className="py-4 text-center">
-     
-      <h2 className="form-h2">Administrador de Productos</h2>
+    <div className="py-4 adminTitle">
+      <h2>Administrador de Productos</h2>
       <ProductForm
         initialData={editingProduct}
         onCancel={() => setEditingProduct(null)}
