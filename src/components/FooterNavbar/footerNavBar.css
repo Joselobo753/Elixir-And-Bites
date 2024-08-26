@@ -38,7 +38,7 @@
   align-items: center;
   cursor: pointer;
   box-shadow: 0px 4px 6px #25d366;
-  border: 2px solid #121212;
+  border: 2px solid #000000;
   color: #25d366;
 }
 .footer-icon:hover {
