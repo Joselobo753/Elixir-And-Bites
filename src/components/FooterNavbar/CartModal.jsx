@@ -141,11 +141,12 @@ const CartModal = ({
         {!initialTableNumber && (
           <div className="form-group">
             <input
-              type="number"
+              type="text"
               placeholder="Ingrese el número de mesa"
               value={tableNumber}
               onChange={handleTableNumberChange}
               className="form-style"
+               maxLength="2" 
             />
             <i className={`input-icon bi bi-hash`}></i>
             <div className="py-2">
