@@ -31,5 +31,5 @@ const FooterNavbar = ({ totalAmount, onCartClick,tableNumber  }) => {
     FooterNavbar.propTypes = {
       totalAmount: PropTypes.number.isRequired,
       onCartClick: PropTypes.func.isRequired,  
-      tableNumber: PropTypes.number.isRequired
+      tableNumber: PropTypes.string.isRequired
     };
