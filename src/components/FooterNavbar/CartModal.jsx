@@ -19,13 +19,13 @@ const CartModal = ({
   } = useForm();
 
   const [resetCount, setResetCount] = useState(false);
-  const [tableNumber, setTableNumber] = useState(initialTableNumber || ""); // Usamos el número de mesa si ya existe
+  const [tableNumber, setTableNumber] = useState(initialTableNumber || ""); 
   const [comment, setComment] = useState("");
   const [isConfirmEnabled, setConfirmEnabled] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    // Solo validamos el número de mesa si no existe uno ya confirmado
+    
     if (!initialTableNumber) {
       const number = parseInt(tableNumber, 10);
       if (
@@ -41,7 +41,7 @@ const CartModal = ({
         setErrorMessage("");
       }
     } else {
-      setConfirmEnabled(true); // Si ya hay un número de mesa, habilitamos la confirmación
+      setConfirmEnabled(true);
     }
   }, [tableNumber, initialTableNumber]);
 
@@ -241,7 +241,7 @@ CartModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   onRemoveFromCart: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
-  tableNumber: PropTypes.string, // Añadimos la prop `tableNumber`
+  tableNumber: PropTypes.string, 
 };
 
 export default CartModal;

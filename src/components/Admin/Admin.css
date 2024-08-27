@@ -150,9 +150,9 @@ select.error:focus {
             background-color: transparent;
 }
 
-/* Estilo para la checkbox cuando está marcada */
+
 #available::before {
-  content: '😥'; /* Emoji cuando no está marcada */
+  content: '😥'; 
   font-size: 24px;
   position: absolute;
   top: 50%;
@@ -160,9 +160,9 @@ select.error:focus {
   transform: translate(-50%, -50%);
 }
 
-/* Agregar el punto personalizado */
+
 #available:checked:checked::before {
-  content: '❤'; /* Emoji cuando está marcada */
+  content: '❤'; 
   font-size: 24px;
   
 }
@@ -173,7 +173,7 @@ select.error:focus {
 }
 
 .form-check-input {
-  margin-right: 5px; /* Espacio entre el checkbox y la etiqueta */
+  margin-right: 5px; 
 }
 
 .edit-warning {
@@ -187,34 +187,34 @@ select.error:focus {
 } 
 
 .btn-danger {
-  background-color: #a4423a; /* Color marrón */
+  background-color: #a4423a;
   border: none;
 }
 
 .btn-warning {
-  background-color: #f5c542; /* Color amarillo */
+  background-color: #f5c542;
   border: none;
 }
 
 .btn-info {
-  background-color: #8c71a4; /* Color morado */
+  background-color: #8c71a4; 
   border: none;
 }
 
 .btn i {
-  color: black; /* Color del ícono negro */
+  color: black; 
 }
 
 .btn-danger i {
-  color: black; /* Ícono de color negro */
+  color: black; 
 }
 
 .btn-warning i {
-  color: black; /* Ícono de color negro */
+  color: black; 
 }
 
 .btn-info i {
-  color: black; /* Ícono de color negro */
+  color: black; 
 }
 
 .custom-modal {

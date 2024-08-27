@@ -7,7 +7,7 @@
   background-color: #201c1c;
   padding: 10px;
  
-  justify-content: center; /* Centra el contenido horizontalmente */
+  justify-content: center;
   align-items: center;
   border-radius: 50px 50px 0px 0px !important;
 }
@@ -26,9 +26,9 @@
 
 .footer-icon {
   position: absolute;
-  top: 40; /* Mantén el ícono en la parte superior del footer */
-  left: 50%; /* Centra el ícono horizontalmente */
-  transform: translate(-50%, -50%); /* Centra el ícono y lo mueve hacia arriba en 50% de su altura */
+  top: 40; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
   background-color: #1e1e1e;
   padding: 10px;
   border-radius: 50%;

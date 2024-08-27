@@ -5,7 +5,7 @@ import "../Menu/menu.css";
 import FooterNavbar from "../FooterNavbar/FooterNavBar";
 import { useEffect, useState } from "react";
 import CartModal from "../FooterNavbar/CartModal";
-import PropTypes from "prop-types"; // Importar PropTypes
+import PropTypes from "prop-types"; 
 
 const Menu = () => {
   const [cart, setCart] = useState([]);
@@ -14,7 +14,7 @@ const Menu = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   const {
-    data: menu = { data: [] }, // Asegúrate de que `menu.data` siempre sea un array
+    data: menu = { data: [] }, 
     isLoading,
     isError,
   } = useQuery({
@@ -175,7 +175,7 @@ MenuCard.propTypes = {
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     disabled: PropTypes.bool.isRequired,
-  }).isRequired, // es obligatorio
+  }).isRequired, 
 };
 
 export default Menu;

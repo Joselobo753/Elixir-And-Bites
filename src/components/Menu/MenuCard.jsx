@@ -65,7 +65,7 @@ const MenuCard = ({ menu, addToCart }) => {
 
 MenuCard.propTypes = {
   menu: PropTypes.shape({
-    id: PropTypes.string.isRequired, // Cambia a `PropTypes.number.isRequired` si `id` es un número
+    id: PropTypes.string.isRequired, 
     name: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

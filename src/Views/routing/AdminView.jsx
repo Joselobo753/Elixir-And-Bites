@@ -8,7 +8,7 @@ const AdminView = () => {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
 
-  // Fetch de los productos cuando se monta el componente
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -22,7 +22,7 @@ const AdminView = () => {
     fetchProducts();
   }, []);
 
-  // Manejo del POST para agregar un nuevo producto
+
   const handleAddProduct = async (product) => {
     try {
       const newProduct = await createProduct(product);
@@ -32,13 +32,13 @@ const AdminView = () => {
     }
   };
 
-  // Manejo del PUT para editar un producto existente
+
   const handleEditProduct = (product) => {
     setEditingProduct(product);
   };
 
   const handleUpdateProduct = async (updatedProduct) => {
-    // eslint-disable-next-line no-unused-vars
+ 
     const { id, ...dataProduct } = updatedProduct;
     try {
       const updated = await updateProduct(editingProduct.id, dataProduct);
@@ -61,7 +61,7 @@ const AdminView = () => {
     }
   };
 
-  // Manejo del DELETE para eliminar un producto
+
   const handleDeleteProduct = async (productId) => {
     try {
       await deleteProduct(productId);
