@@ -49,8 +49,8 @@ const ProductTable = ({ products, onEdit, onDelete }) => {
   };
 
   return (
-    <div className="py-2 admin-list container">
-      <table className="table table-dark table-bordered text-center">
+    <div className="py-3 admin-list container">
+      <table className="table-responsive table-dark table-bordered text-center">
         <thead>
           <tr>
             <th>#</th>
@@ -64,12 +64,12 @@ const ProductTable = ({ products, onEdit, onDelete }) => {
   {Array.isArray(products) && products.length > 0 ? (
     products.map((product, index) => (
       product ? (
-        <tr key={product._id}>
+        <tr key={product._id} >
           <td>{index + 1}</td>
           <td>{product.name}</td>
           <td>${product.price}</td>
           <td>{product.available ? "Sí" : "No"}</td>
-          <td>
+          <td className="d-flex">
             <button
               className="btn btn-danger mx-1"
               onClick={() => handleDelete(product._id)}
