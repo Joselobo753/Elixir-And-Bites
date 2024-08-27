@@ -25,11 +25,11 @@ const FooterNavbar = ({ totalAmount, onCartClick,tableNumber  }) => {
     </div>
       );
     };
-
-FooterNavbar.propTypes = {
-  totalAmount: PropTypes.number.isRequired,
-  onCartClick: PropTypes.func.isRequired,  
-  tableNumber: PropTypes.number.isRequired
-};
-
-export default FooterNavbar;
+    
+    export default FooterNavbar;
+    
+    FooterNavbar.propTypes = {
+      totalAmount: PropTypes.number.isRequired,
+      onCartClick: PropTypes.func.isRequired,  
+      tableNumber: PropTypes.number.isRequired
+    };

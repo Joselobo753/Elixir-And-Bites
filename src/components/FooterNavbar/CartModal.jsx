@@ -1,35 +1,47 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import "../FooterNavbar/cartModal.css";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import Input from "../ui/input/Input";
 import { useForm } from "react-hook-form";
 
-const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm, tableNumber: initialTableNumber }) => {
+const CartModal = ({
+  cart,
+  totalAmount,
+  onClose,
+  onRemoveFromCart,
+  onConfirm,
+  tableNumber: initialTableNumber,
+}) => {
   const {
     register,
     formState: { errors },
   } = useForm();
 
   const [resetCount, setResetCount] = useState(false);
-  const [tableNumber, setTableNumber] = useState(initialTableNumber || '');  // Usamos el número de mesa si ya existe
-  const [comment, setComment] = useState('');
+  const [tableNumber, setTableNumber] = useState(initialTableNumber || ""); // Usamos el número de mesa si ya existe
+  const [comment, setComment] = useState("");
   const [isConfirmEnabled, setConfirmEnabled] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     // Solo validamos el número de mesa si no existe uno ya confirmado
     if (!initialTableNumber) {
       const number = parseInt(tableNumber, 10);
-      if (tableNumber.trim() === '' || isNaN(number) || number < 1 || number > 20) {
+      if (
+        tableNumber.trim() === "" ||
+        isNaN(number) ||
+        number < 1 ||
+        number > 20
+      ) {
         setConfirmEnabled(false);
-        setErrorMessage('Por favor ingrese un número válido entre 1 y 20.');
+        setErrorMessage("Por favor ingrese un número válido entre 1 y 20.");
       } else {
         setConfirmEnabled(true);
-        setErrorMessage('');
+        setErrorMessage("");
       }
     } else {
-      setConfirmEnabled(true);  // Si ya hay un número de mesa, habilitamos la confirmación
+      setConfirmEnabled(true); // Si ya hay un número de mesa, habilitamos la confirmación
     }
   }, [tableNumber, initialTableNumber]);
 
@@ -44,20 +56,20 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm, ta
   const handleConfirm = async () => {
     if (isConfirmEnabled) {
       const { isConfirmed } = await Swal.fire({
-        title: '¿Estás seguro?',
-        text: '¿Deseas confirmar el pedido?',
-        icon: 'question',
+        title: "¿Estás seguro?",
+        text: "¿Deseas confirmar el pedido?",
+        icon: "question",
         showCancelButton: true,
         cancelButtonColor: "#d33",
         confirmButtonColor: "#25d366",
-        confirmButtonText: 'Sí, confirmar',
-        cancelButtonText: 'Cancelar',
+        confirmButtonText: "Sí, confirmar",
+        cancelButtonText: "Cancelar",
       });
 
       if (isConfirmed) {
         onConfirm(tableNumber, comment);
-        setTableNumber('');
-        setComment('');
+        setTableNumber("");
+        setComment("");
         setResetCount(true);
       }
     }
@@ -65,14 +77,14 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm, ta
 
   const handleRemoveFromCart = async (id) => {
     const { isConfirmed } = await Swal.fire({
-      title: '¿Eliminar ítem?',
-      text: '¿Estás seguro de que quieres eliminar este ítem del carrito?',
-      icon: 'warning',
+      title: "¿Eliminar ítem?",
+      text: "¿Estás seguro de que quieres eliminar este ítem del carrito?",
+      icon: "warning",
       showCancelButton: true,
       cancelButtonColor: "#d33",
       confirmButtonColor: "#25d366",
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'Cancelar',
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
     });
 
     if (isConfirmed) {
@@ -93,8 +105,8 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm, ta
                 <th scope="col">Imagen</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Cantidad</th>
+                <th scope="col"><i className="bi bi-trash icon-delete-th"></i></th>
                 <th scope="col">Total</th>
-                <th scope="col">🗑</th>
               </tr>
             </thead>
             <tbody>
@@ -104,28 +116,28 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm, ta
                     <img
                       src={item.imageUrl}
                       alt={item.name}
-                      className="img-fluid cart-modal-image"
-                      style={{ width: "50px" }}
+                      className="cart-modal-image"
                     />
                   </td>
-                  <td>{item.name}</td>
+                  <td className="text-start">{item.name}</td>
                   <td>{item.quantity}</td>
-                  <td>${(item.price * item.quantity)}</td>
+
                   <td>
-                    <button
-                      className="btn btn-danger"
+                    <div
+                      className="button-delete-card"
                       onClick={() => handleRemoveFromCart(item.id)}
+                    
                     >
-                      🗑
-                    </button>
+                      <i className="bi bi-trash icon-delete-card"></i>
+                    </div>
                   </td>
+                  <td>${item.price * item.quantity}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         )}
 
-        {/* Solo pedimos el número de mesa si no existe ya */}
         {!initialTableNumber && (
           <div className="form-group">
             <input
@@ -144,7 +156,9 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm, ta
 
         {initialTableNumber && (
           <div className="form-group">
-            <h5 className="title-enfasis">Número de mesa: {initialTableNumber}</h5>
+            <h5 className="title-enfasis">
+              Número de mesa: {initialTableNumber}
+            </h5>
           </div>
         )}
 
@@ -164,17 +178,21 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm, ta
             },
             maxLength: {
               value: 500,
-              message: "El campo mensaje debe tener un máximo de 500 caracteres",
+              message:
+                "El campo mensaje debe tener un máximo de 500 caracteres",
             },
             pattern: {
               value: /^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9\s.,!?()-]+$/,
-              message: "El campo mensaje solo puede contener letras, números y ciertos caracteres de puntuación (. , ! ? () -)",
+              message:
+                "El campo mensaje solo puede contener letras, números y ciertos caracteres de puntuación (. , ! ? () -)",
             },
             validate: {
               noExtraSpaces: (value) =>
-                !/\s{2,}/.test(value) || "El campo mensaje no puede contener múltiples espacios consecutivos",
+                !/\s{2,}/.test(value) ||
+                "El campo mensaje no puede contener múltiples espacios consecutivos",
               noOnlySpaces: (value) =>
-                value.trim().length > 0 || "El campo mensaje no puede estar compuesto solo de espacios en blanco",
+                value.trim().length > 0 ||
+                "El campo mensaje no puede estar compuesto solo de espacios en blanco",
             },
           }}
           register={register}
@@ -185,18 +203,24 @@ const CartModal = ({ cart, totalAmount, onClose, onRemoveFromCart, onConfirm, ta
           onChange={handleCommentChange}
         />
 
-        <div className="modal-footer">
-          <h3>Total: ${totalAmount.toFixed(2)}</h3>
-          <button className="btn btn-secondary" onClick={onClose}>
+        <div>
+          <div className="text-center">
+
+          <h3 className="title-enfasis">Total: ${totalAmount.toFixed(2)}</h3>
+          </div>
+          <div className="pt-2 d-flex justify-content-between" >
+
+          <button className="btn text-white" onClick={onClose}>
             Cerrar
           </button>
           <button
-            className="btn btn-primary"
+            className="btn button-confirm"
             onClick={handleConfirm}
             disabled={cart.length === 0 || !isConfirmEnabled}
-          >
+            >
             Confirmar Pedido
           </button>
+            </div>
         </div>
       </div>
     </div>
