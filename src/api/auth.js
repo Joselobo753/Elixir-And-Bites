@@ -2,7 +2,7 @@ import { decodeJWT } from "../utilities/decodeJWT";
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-// POST LOGIN FUNTION
+
 export const postLoginFn = async (data) => {
   const res = await fetch(`${BACKEND_URL}/auth/login`, {
     method: "POST",
@@ -36,7 +36,7 @@ export const postLoginFn = async (data) => {
   return userData;
 };
 
-// POST REGISTER FUNTION
+
 export const postRegisterFn = async (data) => {
   const res = await fetch(`${BACKEND_URL}/users`, {
     method: "POST",
