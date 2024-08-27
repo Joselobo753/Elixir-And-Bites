@@ -111,7 +111,7 @@ const Menu = () => {
 
   return (
     <>
-      <div className="py-5">
+      <div className="py-5 flex-grow-1">
         <select
           value={selectedCategory}
           onChange={handleCategoryChange}
@@ -134,7 +134,7 @@ const Menu = () => {
         <hr className="title-enfasis" />
         </div>
         <div className=" mx-2 ">
-        {groupedMenu[category].map((menuItem, index) => (
+        {groupedMenu[category] && groupedMenu[category].map((menuItem, index) => (
 
           <MenuCard
             menu={menuItem}

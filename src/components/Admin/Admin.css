@@ -233,7 +233,9 @@ select.error:focus {
 .custom-modal-body p {
   color: white; 
 }
-
+.active{
+  background-color: #8e44ad !important;
+}
 .custom-modal-image {
   width: 100%;
   height: 230px;
