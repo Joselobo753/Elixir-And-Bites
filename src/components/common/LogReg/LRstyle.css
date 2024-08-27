@@ -45,8 +45,8 @@ h6 span{
 .full-height{
   min-height: 100vh;
 }
-[type="checkbox"]:checked,
-[type="checkbox"]:not(:checked){
+.checkbox:checked,
+.checkbox:not(:checked) {
   position: absolute;
   left: -9999px;
 }

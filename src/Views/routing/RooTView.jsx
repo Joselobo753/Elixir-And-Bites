@@ -1,21 +1,30 @@
-import { Outlet } from "react-router-dom"
-import Header from "../../components/common/Header/Header"
-import ButtonLR from "../../components/common/button/ButtonLR"
+import { Outlet, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import Header from "../../components/common/Header/Header";
+import Footer from "../../components/common/Footer/Footer";
 
-import ModalLR from "../../components/common/LogReg/ModalLR"
+const RootView = () => {
+  const location = useLocation();
+  const [showFooter, setShowFooter] = useState(true);
 
+  useEffect(() => {
+    
+    if (location.pathname === "/menu") {
+      setShowFooter(false);
+    } else {
+      setShowFooter(true);
+    }
+  }, [location.pathname]);
 
-const RooTView = () => {
   return (
     <>
-    <Header/>
-    <main>
-        <Outlet/>
-       <ButtonLR/>
-       <ModalLR/>
-    </main>
-    <footer>AGREGAR ALGO</footer>
+      <main className="flex-grow-1">
+        <Header />
+        <Outlet />
+        {showFooter && <Footer />}
+      </main>
     </>
-  )
-}
-export default RooTView
+  );
+};
+
+export default RootView;
