@@ -5,7 +5,9 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 
+
 const ProductTable = ({ products, onEdit, onDelete }) => {
+ 
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const handleView = (product) => {
@@ -47,7 +49,7 @@ const ProductTable = ({ products, onEdit, onDelete }) => {
   };
 
   return (
-    <div className="admin-list container">
+    <div className="py-2 admin-list container">
       <table className="table table-dark table-bordered text-center">
         <thead>
           <tr>
@@ -125,6 +127,7 @@ const ProductTable = ({ products, onEdit, onDelete }) => {
     </Modal.Footer>
   </Modal>
 )}
+   
     </div>
   );
 };

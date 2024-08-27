@@ -43,74 +43,92 @@ const ProductForm = ({ initialData, onSubmit, onCancel }) => {
 
   return (
     <form className="admin-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="name">Nombre del Producto</label>
+     
+      <div className="form-group ">
+        
         <input
+          placeholder="Nombre del Producto"
           required
-          className="form-control"
+          className="form-style"
           id="name"
           name="name"
           type="text"
           value={formData.name}
           onChange={handleChange}
         />
+        <i className={`input-icon bi bi-basket`}></i>
       </div>
+ <div className="py-2">
 
       <div className="form-group">
-        <label htmlFor="imageUrl">Imagen (URL)</label>
+        
         <input
           required
-          className="form-control"
+          placeholder="Imagen (URL)"
+          className="form-style"
           id="imageUrl"
           name="imageUrl"
           type="url"
           value={formData.imageUrl}
           onChange={handleChange}
-        />
+          />
+        <i className={`input-icon bi bi-image-fill`}></i>
       </div>
+          </div>
+   
 
       <div className="form-group">
-        <label htmlFor="price">Precio</label>
+        
         <input
           required
-          className="form-control"
+          placeholder="Precio"
+          className="form-style"
           id="price"
           name="price"
           type="text"
           value={formData.price}
           onChange={handleChange}
-        />
+          
+          />
+          <i className={`input-icon bi bi-currency-euro`}></i>
       </div>
+         <div className="py-2">
+
       <div className="form-group">
-        <label htmlFor="description">Descripción</label>
+        
         <textarea
           required
-          className="form-control"
+          className="form-style textarea-contacto"
           id="description"
           name="description"
           value={formData.description}
           onChange={handleChange}
-        />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="available">Disponible</label>
-        <div className="form-check form-switch mx-3">
-          <input
-            checked={formData.available}
-            className="form-check-input"
-            id="available"
-            name="available"
-            type="checkbox"
-            onChange={handleChange}
           />
-        </div>
+        <i className={`input-icon bi bi-text-left `}></i>
       </div>
+          </div>
+    <div className="form-style">
 
+          <div className="form-check-inline d-flex justify-content-evenly">
+  <div className="mx-3">
+    <input
+      checked={formData.available}
+      className="form-check-input"
+      id="available"
+      name="available"
+      type="checkbox"
+      onChange={handleChange}
+      />
+  </div>
+  <label htmlFor="available" className="form-check-label">
+    {formData.available ? 'Disponible' : 'No disponible'}
+  </label>
+</div>
+      </div>
       <div className="form-group">
         <label htmlFor="category">Categoría</label>
         <select
-          className="form-control"
+          className="form-style"
           id="category"
           name="category"
           value={formData.category}
@@ -123,13 +141,12 @@ const ProductForm = ({ initialData, onSubmit, onCancel }) => {
           <option value="cervezas">Cervezas</option>
         </select>
       </div>
-
-      <div className="form-group mt-auto d-flex justify-content-around">
-        <button className="formBoton" type="submit">
+      <div className="form-group pt-3 mt-auto d-flex justify-content-around">
+        <button className="button-card" type="submit">
           {initialData ? "Actualizar" : "Guardar Producto"}
         </button>
         {initialData && (
-          <button className="formBoton" type="button" onClick={onCancel}>
+          <button className="btn text-white" type="button" onClick={onCancel}>
             Cancelar
           </button>
         )}
