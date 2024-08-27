@@ -29,15 +29,6 @@
       "quantity": 150
     },
     {
-      "category": "Pizzas",
-      "id": "161b",
-      "name": "Pizza de Gangoso",
-      "imageUrl": "https://pbs.twimg.com/media/CpY9YBBUkAA-Pf6.jpg",
-      "description": "Llena de ricota ñami ñami",
-      "price": 1500,
-      "quantity": 150
-    },
-    {
       "category": "Entradas",
       "id": "191a",
       "name": "Empanadas de Pollo",

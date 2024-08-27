@@ -1,64 +1,130 @@
 import PropTypes from "prop-types";
 import "./Admin.css";
+import { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
+import Swal from "sweetalert2";
 
 const ProductTable = ({ products, onEdit, onDelete }) => {
-  const groupedProducts = (products || []).reduce((acc, product) => {
-    if (!product || !product.category) {
-      return acc;
-    }
-    const category = product.category;
-    if (!acc[category]) {
-      acc[category] = [];
-    }
-    acc[category].push(product);
-    return acc;
-  }, {});
+  const [selectedProduct, setSelectedProduct] = useState(null);
+
+  const handleView = (product) => {
+    setSelectedProduct(product);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProduct(null);
+  };
+
+  const handleEdit = (product) => {
+    onEdit(product);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleDelete = (productId) => {
+    Swal.fire({
+      title: '¿Estás seguro?',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancelar',
+      confirmButtonText: 'Sí, eliminar',
+      customClass: {
+        popup: 'custom-swal-popup',
+        title: 'custom-swal-title',
+        confirmButton: 'custom-confirm-button',
+        cancelButton: 'custom-cancel-button',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onDelete(productId); 
+        Swal.fire(
+          '¡Eliminado!',
+          'El producto ha sido eliminado.',
+          'success'
+        );
+      }
+    });
+  };
 
   return (
-    <div className="admin-list container">
-      {Object.keys(groupedProducts).map((category) => (
-        <div className="category-section categoryTitle py-4" key={category}>
-          <h3>{category}</h3>
-          <div className="row">
-            {groupedProducts[category].map((product) => (
-              <div
-                className="col-12 col-sm-6 col-md-4 col-lg-3 mb-3"
-                key={product._id}
-              >
-                <div className="card h-100">
-                  <img
-                    alt={product.name}
-                    className="card-img-top"
-                    src={product.imageUrl}
-                  />
-                  <div className="card-body d-flex flex-column">
-                    <h5 className="card-title text-sm">{product.name}</h5>
-                    <p className="card-text text-sm">{product.description}</p>
-                    <p className="card-text text-sm">Precio: ${product.price}</p>
-                    <p className="card-text text-sm">
-                      Disponible: {product.available ? "Sí" : "No"}
-                    </p>
-                    <div className="mt-auto d-flex justify-content-around">
-                      <button
-                        className="btn btn-danger"
-                        onClick={() => onEdit(product)}
-                      >
-                        Editar
-                      </button>
-                      <button
-                        className="btn btn-secondary"
-                        onClick={() => onDelete(product.id)}
-                      >
-                        Eliminar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      ))}
+    <div className="py-2 admin-list container">
+      <table className="table table-dark table-bordered text-center">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Disponible</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+  {Array.isArray(products) && products.length > 0 ? (
+    products.map((product, index) => (
+      product ? (
+        <tr key={product._id}>
+          <td>{index + 1}</td>
+          <td>{product.name}</td>
+          <td>${product.price}</td>
+          <td>{product.available ? "Sí" : "No"}</td>
+          <td>
+            <button
+              className="btn btn-danger mx-1"
+              onClick={() => handleDelete(product._id)}
+            >
+              <i className="fas fa-trash-alt"></i>
+            </button>
+            <button
+              className="btn btn-warning mx-1"
+              onClick={() => handleEdit(product)}
+            >
+              <i className="fas fa-edit"></i>
+            </button>
+            <button
+              className="btn btn-info mx-1"
+              onClick={() => handleView(product)}
+            >
+              <i className="fas fa-eye"></i>
+            </button>
+          </td>
+        </tr>
+      ) : null
+    ))
+  ) : (
+    <tr>
+      <td colSpan="5">No hay productos disponibles</td>
+    </tr>
+  )}
+</tbody>
+
+      </table>
+
+      {selectedProduct && (
+  <Modal show={true} onHide={handleCloseModal} className="custom-modal">
+    <Modal.Header closeButton className="custom-modal-header">
+      <Modal.Title className="custom-modal-title">{selectedProduct.name}</Modal.Title>
+    </Modal.Header>
+    <Modal.Body className="custom-modal-body">
+      <img
+        src={selectedProduct.imageUrl}
+        alt={selectedProduct.name}
+        className="img-fluid mb-3 custom-modal-image"
+      />
+      <p><strong>Descripción:</strong> {selectedProduct.description}</p>
+      <p><strong>Precio:</strong> ${selectedProduct.price}</p>
+      <p>
+        <strong>Disponible:</strong>{" "}
+        {selectedProduct.available ? "Sí" : "No"}
+      </p>
+      <p><strong>Categoría:</strong> {selectedProduct.category}</p>
+    </Modal.Body>
+    <Modal.Footer className="custom-modal-footer">
+      <Button variant="secondary" onClick={handleCloseModal}>
+        Cerrar
+      </Button>
+    </Modal.Footer>
+  </Modal>
+)}
     </div>
   );
 };

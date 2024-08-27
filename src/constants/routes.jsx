@@ -46,6 +46,7 @@ export const router = createBrowserRouter([
         path: "",
         element: <PrivateView />,
         children: [
+          
         ],
       },
       {
