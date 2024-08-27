@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { postLoginFn } from "../../../api/auth";
 import PropTypes from 'prop-types';
+import { useState } from "react";
 
 const Login = ({ closeModal }) => {
+  const [titleText, settitleText] = useState("Ingresar");
   const { login } = useSession();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
@@ -20,6 +22,10 @@ const Login = ({ closeModal }) => {
         navigate("/menu");
       
     },
+    onError: () => {
+      settitleText("La contraseña o email incorrecto");
+      
+    },
   });
 
   const onSubmitHandler = (data) => {
@@ -29,7 +35,7 @@ const Login = ({ closeModal }) => {
 
   return (
     <div className="section text-center">
-      <h4 className="mb-4 pb-3 text-white">Ingresar</h4>
+      <h4 className="mb-4 pb-3 text-white">{titleText}</h4>
       <div className="form-group">
         <form onSubmit={handleSubmit(onSubmitHandler)}>
           <InputLR

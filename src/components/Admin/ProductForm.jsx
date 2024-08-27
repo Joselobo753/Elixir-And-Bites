@@ -1,8 +1,17 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./Admin.css";
+import InputLR from "../common/LogReg/InputLR";
+import { useForm } from "react-hook-form";
+import Input from "../ui/input/Input";
 
 const ProductForm = ({ initialData, onSubmit, onCancel }) => {
+  const [resetCount, setResetCount] = useState(false);
+  const {
+    register,
+
+    formState: { errors },
+  } = useForm();
   const [formData, setFormData] = useState({
     name: "",
     imageUrl: "",
@@ -38,84 +47,134 @@ const ProductForm = ({ initialData, onSubmit, onCancel }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
+    setResetCount(false);
   };
 
   return (
     <form className="admin-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="name">Nombre del Producto</label>
-        <input
-          required
-          className="form-control"
-          id="name"
-          name="name"
-          type="text"
-          value={formData.name}
-          onChange={handleChange}
-        />
-      </div>
+      <InputLR
+        error={errors.name}
+        label="name"
+        name="name"
+        options={{
+          required: { value: true, message: "Este campo es requerido" },
+          minLength: 3,
+          maxLength: 30,
+        }}
+        register={register}
+        placeholder="Nombre del producto"
+        icon="bi bi-basket"
+        onChange={handleChange}
+        value={formData.name}
+      />
 
-      <div className="form-group">
-        <label htmlFor="imageUrl">Imagen (URL)</label>
-        <input
-          required
-          className="form-control"
-          id="imageUrl"
-          name="imageUrl"
-          type="url"
-          value={formData.imageUrl}
-          onChange={handleChange}
-        />
-      </div>
+      <InputLR
+        error={errors.imageUrl}
+        label="imageUrl"
+        name="imageUrl"
+        options={{
+          required: { value: true, message: "Este campo es requerido" },
+          pattern: {
+            value: /^.*.(jpg|jpeg|png|gif|bmp|webp)$/,
+            message: "Debe ser una URL válida",
+          },
+        }}
+        register={register}
+        placeholder="Imagen del producto"
+        icon="bi bi-image-fill"
+        onChange={handleChange}
+        value={formData.imageUrl}
+      />
 
-      <div className="form-group">
-        <label htmlFor="price">Precio</label>
-        <input
-          required
-          className="form-control"
-          id="price"
-          name="price"
-          type="text"
-          value={formData.price}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="description">Descripción</label>
-        <textarea
-          required
-          className="form-control"
-          id="description"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
-      </div>
+      <InputLR
+        error={errors.price}
+        label="price"
+        name="price"
+        options={{
+          required: { value: true, message: "Este campo es requerido" },
+          pattern: {
+            minLength: 3,
+            maxLength: 5,
+          },
+        }}
+        type="number"
+        register={register}
+        placeholder="Precio del producto"
+        icon="bi bi-currency-euro"
+        onChange={handleChange}
+        value={formData.price}
+      />
+      <Input
+        className="m-3 textarea-contacto"
+        error={errors.message}
+        label="Mensaje"
+        name="message"
+        options={{
+          required: {
+            value: true,
+            message: "El mensaje es requerido",
+          },
+          minLength: {
+            value: 10,
+            message: "El campo mensaje debe tener al menos 10 caracteres",
+          },
+          maxLength: {
+            value: 500,
+            message: "El campo mensaje debe tener un máximo de 500 caracteres",
+          },
+          pattern: {
+            value: /^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9\s.,!?()-]+$/,
+            message:
+              "El campo mensaje solo puede contener letras, números y ciertos caracteres de puntuación (. , ! ? () -)",
+          },
+          validate: {
+            noExtraSpaces: (value) =>
+              !/\s{2,}/.test(value) ||
+              "El campo mensaje no puede contener múltiples espacios consecutivos",
+            noOnlySpaces: (value) =>
+              value.trim().length > 0 ||
+              "El campo mensaje no puede estar compuesto solo de espacios en blanco",
+          },
+        }}
+        register={register}
+        textarea
+        placeholder="Escriba bien la descripcion o si no hay tabla"
+        maxLength={500}
+        resetCount={resetCount}
+      />
 
-      <div className="form-group">
-        <label htmlFor="available">Disponible</label>
-        <div className="form-check form-switch mx-3">
-          <input
-            checked={formData.available}
-            className="form-check-input"
-            id="available"
-            name="available"
-            type="checkbox"
-            onChange={handleChange}
-          />
+      <div className="form-group text-center">
+        <div className="form-check-inline d-flex justify-content-evenly">
+          <div className="mx-3">
+            <input
+              checked={formData.available}
+              className="form-check-input"
+              id="available"
+              name="available"
+              type="checkbox"
+              onChange={handleChange}
+            />
+          </div>
+          <label htmlFor="available" className="form-check-label">
+            {formData.available ? "Disponible" : "No disponible"}
+          </label>
         </div>
       </div>
 
-      <div className="form-group">
-        <label htmlFor="category">Categoría</label>
+      <div className="form-group py-3">
         <select
-          className="form-control"
+          className="form-style custom-select"
           id="category"
           name="category"
           value={formData.category}
           onChange={handleChange}
         >
-          <option value="burgers">Burgers</option>
+          <option value="" disabled>
+            Categoría
+          </option>
+          <option value="burgers" className="form-style">
+            Burgers
+          </option>
           <option value="entrantes">Entrantes</option>
           <option value="kids">Kids</option>
           <option value="bebidas">Bebidas</option>
@@ -123,12 +182,12 @@ const ProductForm = ({ initialData, onSubmit, onCancel }) => {
         </select>
       </div>
 
-      <div className="form-group mt-auto d-flex justify-content-around">
-        <button className="formBoton" type="submit">
+      <div className="justify-content-around">
+        <button className="rounded-button" type="submit">
           {initialData ? "Actualizar" : "Guardar Producto"}
         </button>
         {initialData && (
-          <button className="formBoton" type="button" onClick={onCancel}>
+          <button className="rounded-button" type="button" onClick={onCancel}>
             Cancelar
           </button>
         )}
