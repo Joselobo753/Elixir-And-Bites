@@ -1,17 +1,16 @@
 import PropTypes from "prop-types";
 
-const getRandomChar = () => {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  return chars.charAt(Math.floor(Math.random() * chars.length));
-};
+// const getRandomChar = () => {
+//   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+//   return chars.charAt(Math.floor(Math.random() * chars.length));
+// };
 const InputLR = (props) => {
   const { name, type = "text", error, register, options, placeholder = "Ingrese un texto", icon } = props;
-  const randomChar = getRandomChar();
+  // const randomChar = getRandomChar();
   return (
     <div className="form-group">
       <input
         className={` ${error ? "form-style-error" : "form-style pb-2"}`}
-        id={`${name}-${randomChar}-input`}
         type={type}
         placeholder={placeholder}
         {...register(name, options)} 

@@ -36,7 +36,7 @@ const Registro = ({ closeModal }) => {
       name: data.name,
       dni: data.dni,
       email: data.email,
-      password: data.passwordR,
+      password: data.password,
     });
   };
 
@@ -89,9 +89,9 @@ const Registro = ({ closeModal }) => {
             icon="uil uil-at"
           />
           <InputLR
-            error={errors.passwordR}
+            error={errors.password}
             label="Contraseña"
-            name="passwordR"
+            name="password"
             options={{
               required: { value: true, message: "Este campo es requerido" },
               minLength: { value: 8, message: "Mínimo 8 caracteres" },

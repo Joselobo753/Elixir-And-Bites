@@ -1,57 +1,131 @@
-const BK_URL = import.meta.env.VITE_BACKEND_URL;
+import { decodeJWT } from "../utilities/decodeJWT";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+// POST LOGIN FUNTION
 export const postLoginFn = async (data) => {
+  const res = await fetch(`${BACKEND_URL}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  console.log(data, res);
+
+  if (res.status === 204 || res.headers.get("content-length") === "0") {
+    throw new Error("Respuesta vacía del servidor");
+  }
+
+  const resData = await res.json();
+
+  if (!res.ok) {
+    throw new Error(resData.message || "Ocurrió un error");
+  }
+
+  const token = resData.data;
+
+  if (!token) {
+    throw new Error(resData.message || "Ocurrió un error");
+  }
+
+  const userData = decodeJWT(token).user;
+
+  sessionStorage.setItem("token", token);
+
+  return userData;
+};
+
+// POST REGISTER FUNTION
+export const postRegisterFn = async (data) => {
+  const res = await fetch(`${BACKEND_URL}/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      firstname: data.firstname,
+      lastname: data.lastname,
+      email: data.email,
+      password: data.password,
+    }),
+  });
+
+  if (!res.ok) {
+    throw new Error("Ocurrió un error al crear el usuario");
+  }
+
+  const userData = await postLoginFn({
+    email: data.email,
+    password: data.password,
+  });
+
+  return userData;
+};
+
+// PUT REGISTER FUNTION
+export const putRegisterFn = async ([userId, updatedData]) => {
   try {
-    
-    const res = await fetch(`${BK_URL}/users`);
-    
+    const res = await fetch(`${BACKEND_URL}/users/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+      body: JSON.stringify(updatedData),
+    });
     if (!res.ok) {
-      throw new Error("Ocurrió un error al intentar iniciar sesión");
+      const errorResponse = await res.json();
+      console.error("Error en el backend:", errorResponse);
+      throw new Error("Error al actualizar el usuario");
     }
-
-    const users = await res.json();
-
-    if (!Array.isArray(users)) {
-      throw new Error("Datos inválidos recibidos del servidor");
-    }
-
-    const foundUser = users.find((user) => user.email === data.email);
-
-    if (!foundUser || foundUser.password !== data.password) {
-      throw new Error("El usuario o la contraseña no es correcta");
-    }
-
-    return { ...foundUser, password: undefined };
+    const updatedUser = await res.json();
+    return updatedUser;
   } catch (error) {
-    console.error(error);
+    console.error("Error:", error);
     throw error;
   }
 };
 
-export const postRegisterFn = async (data) => {
-    try {
-      const res = await fetch(`${BK_URL}/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: data.name,
-          dni: data.dni,
-          email: data.email,
-          password: data.password,
-          isAdmin: false,
-        }),
-      });
-  
-      if (!res.ok) {
-        throw new Error("Ocurrió un error al guardar el usuario");
-      }
-  
-      const result = await res.json();
-      return result;
-    } catch (error) {
-      console.error(error);
-      throw error;
+// GET by ID
+export const fetchUserById = async (id) => {
+  try {
+    const res = await fetch(`${BACKEND_URL}/users/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      },
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.error("Error fetching user:", errorData);
+      throw new Error("Error al obtener el usuario");
     }
-  };
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error in fetchUserById:", error);
+    throw error;
+  }
+};
+
+// GET REGISTER FUNTION EMAIL CONTROL
+export const checkEmailExists = async (email) => {
+  const res = await fetch(`${BACKEND_URL}/users/check-email?email=${email}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("Error al verificar el correo");
+  }
+
+  const data = await res.json();
+
+  return data.exists;
+};
