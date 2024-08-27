@@ -4,7 +4,7 @@ const BK_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const postLoginFn = async (data) => {
   
-  const res = await fetch(`${BK_URL} /auth/login`,{
+  const res = await fetch(`${BK_URL}/auth/login`,{
     method: "POST",
     headers: {
       "Content-Type": "application/json",

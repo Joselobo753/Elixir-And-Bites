@@ -1,110 +1,173 @@
-import PropTypes from "prop-types";
-import { toast } from "sonner";
-import { useCartStore } from "../../constans/Stores/useCardStore.js";
-import "./menu.css";
+import { useQuery } from "@tanstack/react-query";
+import { getMenuFn } from "../../api/menu";
+import MenuCard from "./MenuCard";
+import "../Menu/menu.css";
+import FooterNavbar from "../FooterNavbar/FooterNavBar";
+import { useEffect, useState } from "react";
+import CartModal from "../FooterNavbar/CartModal";
+import PropTypes from "prop-types"; // Importar PropTypes
 
-const CardsMenu = ({ menuItem }) => {
-  const { addToTheCart } = useCartStore();
+const Menu = () => {
+  const [cart, setCart] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [tableNumber, setTableNumber] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const handleAdd = (menuItem) => {
-    toast.success("Producto agregado!", {
-      duration: 800,
-    });
-    addToTheCart(menuItem);
+  const {
+    data: menu = { data: [] }, // Asegúrate de que `menu.data` siempre sea un array
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["menu", selectedCategory],
+    queryFn: () => getMenuFn(selectedCategory),
+  });
+  
+  console.log(menu);
+  const [scrollTop, setScrollTop] = useState("select-category");
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+    if (scrollPosition > 0) {
+      setScrollTop("select-category-scroll");
+    } else {
+      setScrollTop("select-category");
+    }
   };
 
-  const modalId = `descriptionModal-${menuItem.id}`;
-  return (
-    <section className={`menuCard ${menuItem.disabled ? "notAvailable" : ""}`}>
-      <article>
-        <div className="imageZone">
-          <button
-            className="modalTrigger"
-            data-bs-target={`#${modalId}`}
-            data-bs-toggle="modal"
-            disabled={menuItem.disabled}
-            type="button"
-          >
-            <div className="menuImage">
-              <img alt={menuItem.name} src={menuItem.imageUrl} />
-              {menuItem.disabled && <div className="overlay"></div>}
-            </div>
-          </button>
-          <button
-            className="addButton"
-            disabled={menuItem.disabled}
-            onClick={() => handleAdd(menuItem)}
-          >
-            <i className="bi bi-plus-lg"></i>
-          </button>
-        </div>
-        <div className="menuText mt-3 ps-3">
-          <button
-            className="modalTrigger"
-            data-bs-target={`#${modalId}`}
-            data-bs-toggle="modal"
-            disabled={menuItem.disabled}
-            type="button"
-          >
-            <h5>{menuItem.name}</h5>
-          </button>
-          <h2>${menuItem.price}</h2>
-        </div>
-      </article>
-      <div
-        aria-hidden="true"
-        aria-labelledby="foodDescription"
-        className="modal fade"
-        data-bs-theme="dark"
-        id={modalId}
-        tabIndex="-1"
-      >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="modal-title fs-5" id="foodDescription">
-                {menuItem.name}
-              </h1>
-              <button
-                aria-label="Close"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                type="button"
-              ></button>
-            </div>
-            <div className="modal-body">
-              <img
-                alt={menuItem.name}
-                className="modalImage"
-                src={menuItem.imageUrl}
-              />
-              <p className="mt-3 mb-0 bodyFont">{menuItem.description}</p>
-            </div>
-            <div className="footer">
-              <h2 className="priceModal me-5">${menuItem.price}</h2>
-              <button
-                className="btn btn-outline-secondary"
-                data-bs-dismiss="modal"
-                type="button"
-              >
-                CERRAR
-              </button>
-              <button
-                className="btn btn-danger m-3"
-                onClick={() => handleAdd(menuItem)}
-              >
-                AGREGAR
-              </button>
-            </div>
-          </div>
-        </div>
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  const filteredMenu =
+    selectedCategory === "all"
+      ? menu.data
+      : menu.data.filter((item) => item.category === selectedCategory);
+      const groupedMenu = filteredMenu.reduce((acc, menuItem) => {
+        const category = menuItem.category;
+        if (!acc[category]) {
+          acc[category] = [];
+        }
+        acc[category].push(menuItem);
+        return acc;
+      }, {});
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
+
+  const addToCart = (item, quantity) => {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((cartItem) => cartItem.id === item.id);
+      if (existingItem) {
+        if (quantity === 0) {
+          return prevCart.filter((cartItem) => cartItem.id !== item.id);
+        }
+        return prevCart.map((cartItem) =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + quantity }
+            : cartItem
+        );
+      }
+      return [...prevCart, { ...item, quantity }];
+    });
+  };
+
+  const removeFromCart = (id) => {
+    setCart((prevCart) => prevCart.filter((cartItem) => cartItem.id !== id));
+  };
+
+  const totalAmount = cart.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  const handleCartClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleConfirmOrder = (number) => {
+    setTableNumber(number);
+    console.log("Pedido confirmado para la mesa:", number);
+    setCart([]);
+    setIsModalOpen(false);
+  };
+
+  if (isLoading) {
+    return <p className="mt-2 text-center">Cargando datos...</p>;
+  }
+
+  if (isError) {
+    return (
+      <div className="alert alert-danger">
+        Ocurrió un error cargando los datos
       </div>
-    </section>
+    );
+  }
+
+  return (
+    <>
+      <div className="py-5">
+        <select
+          value={selectedCategory}
+          onChange={handleCategoryChange}
+          className={`${scrollTop} category-dropdown`}
+        >
+          <option value="all">Todas</option>
+          <option value="burgers">Burgers</option>
+          <option value="entrantes">Entradas</option>
+          <option value="tragos">Tragos</option>
+          <option value="bebidas">Bebidas</option>
+          <option value="cervezas">Cervezas</option>
+        </select>
+
+        <div className="menu-category-cont py-2">
+    {Object.keys(groupedMenu).map((category) => (
+      <div key={category}>
+        <div className="text-center">
+
+        <h2 className="title-enfasis">{category.toUpperCase()}</h2> 
+        <hr className="title-enfasis" />
+        </div>
+        <div className=" mx-2 ">
+        {groupedMenu[category].map((menuItem, index) => (
+
+          <MenuCard
+            menu={menuItem}
+            index={index}
+            addToCart={addToCart}
+            key={menuItem.id}
+            />
+        ))}
+            </div>
+      </div>
+    ))}
+  </div>
+        <FooterNavbar
+          totalAmount={totalAmount}
+          onCartClick={handleCartClick}
+          tableNumber={tableNumber}
+        />
+        {isModalOpen && (
+          <CartModal
+            cart={cart}
+            totalAmount={totalAmount}
+            onClose={handleCloseModal}
+            onRemoveFromCart={removeFromCart}
+            onConfirm={handleConfirmOrder}
+            tableNumber={tableNumber}
+          />
+        )}
+      </div>
+    </>
   );
 };
-export default CardsMenu;
 
-CardsMenu.propTypes = {
+MenuCard.propTypes = {
   menuItem: PropTypes.shape({
     id: PropTypes.string.isRequired,
     imageUrl: PropTypes.string.isRequired,
@@ -112,5 +175,7 @@ CardsMenu.propTypes = {
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     disabled: PropTypes.bool.isRequired,
-  }),
+  }).isRequired, // es obligatorio
 };
+
+export default Menu;

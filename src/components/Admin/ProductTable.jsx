@@ -64,7 +64,7 @@ const ProductTable = ({ products, onEdit, onDelete }) => {
   {Array.isArray(products) && products.length > 0 ? (
     products.map((product, index) => (
       product ? (
-        <tr key={product._id} >
+        <tr key={product.id} >
           <td>{index + 1}</td>
           <td>{product.name}</td>
           <td>${product.price}</td>
@@ -72,7 +72,7 @@ const ProductTable = ({ products, onEdit, onDelete }) => {
           <td className="d-flex">
             <button
               className="btn btn-danger mx-1"
-              onClick={() => handleDelete(product._id)}
+              onClick={() => handleDelete(product.id)}
             >
               <i className="fas fa-trash-alt"></i>
             </button>
@@ -110,7 +110,7 @@ const ProductTable = ({ products, onEdit, onDelete }) => {
       <img
         src={selectedProduct.imageUrl}
         alt={selectedProduct.name}
-        className="img-fluid mb-3 custom-modal-image"
+        className="mb-3 custom-modal-image"
       />
       <p><strong>Descripción:</strong> {selectedProduct.description}</p>
       <p><strong>Precio:</strong> ${selectedProduct.price}</p>
