@@ -14,7 +14,7 @@ const Error404View = () => {
           Bites!
         </h5>
         </div>
-        <img src="public\E&B-404.png" className="w-75" alt="enano ebrio" />
+        <img src="/E&B-404.png" className="w-75" alt="enano ebrio" />
         <div className="py-4">
 
         <Link to="/" className="bg-dark  rounded-button">
