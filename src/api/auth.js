@@ -23,7 +23,7 @@ export const postLoginFn = async (data) => {
     throw new Error(resData.message || "Ocurrió un error");
   }
 
-  const token = resData.data;
+  const token = resData.data.token;
 
   if (!token) {
     throw new Error(resData.message || "Ocurrió un error");
