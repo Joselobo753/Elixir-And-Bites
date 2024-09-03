@@ -15,7 +15,7 @@ const Header = () => {
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img
-            src="../../../../public/potion.svg"
+            src="/potion.svg"
             alt="Logo"
             width="30"
             height="24"
