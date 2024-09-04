@@ -5,7 +5,7 @@ import Swal from 'sweetalert2/src/sweetalert2.js';
 import { useSession } from '../../../constans/Stores/useSesion';
 import { useNavigate } from 'react-router-dom';
 
-const HeaderUser = ({user}) => {
+const HeaderUser = ({user,onClose}) => {
   const {logout} = useSession()
   const navigate = useNavigate(); 
   const handleLogout = async () =>{
@@ -22,7 +22,7 @@ const HeaderUser = ({user}) => {
     if(action.isConfirmed){
       logout()
       navigate('/')
-      
+      onClose()
     }
   }
   return (
@@ -41,5 +41,5 @@ const HeaderUser = ({user}) => {
 export default HeaderUser
 HeaderUser.propTypes = {
   user: PropTypes.object.isRequired, 
- 
+ onClose: PropTypes.func.isRequired
 };

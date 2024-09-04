@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 
-const RedesSociales = () => {
+const RedesSociales = (onClose) => {
+  
   return (
     <div className="row text-center d-flex justify-content-between">
       <div className="col-6">
         
-      <Link className="navbar-brand" to="/404">
+      <Link className="navbar-brand" to="/404" onClick={onClose}>
           <img
           src="../../../../10464230.png"
           className="ico-redes"
@@ -16,7 +17,7 @@ const RedesSociales = () => {
       </div>
      
         <div className="col-6">
-          <Link className="navbar-brand" to="/404">
+          <Link className="navbar-brand" to="/404" onClick={onClose}>
           
           <img
             src="../../../../Instagram_logo_2016.svg.png"
