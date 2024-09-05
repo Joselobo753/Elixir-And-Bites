@@ -7,9 +7,16 @@ import HeaderUser from "./HeaderUser";
 import HeaderAdmin from "./HeaderAdmin";
 import ButtonsLink from "./buttonsLink";
 import { useSession } from "../../../constans/Stores/useSesion";
+import { useRef } from "react";
 
 const Header = () => {
   const {user,isLoggedIn} = useSession()
+  const closeButtonRef = useRef(null);
+  const handleCloseButtonClick = () => {
+    if (closeButtonRef.current) {
+      closeButtonRef.current.click();
+    }
+  };
   return (
     <nav className="navbar bg-body-dark">
       <div className="container-fluid">
@@ -36,7 +43,7 @@ const Header = () => {
           tabIndex="-1"
           id="offcanvasRight"
           aria-labelledby="offcanvasRightLabel"
-          
+          ref={closeButtonRef}
         >
           <div className="offcanvas-header d-flex justify-content-between align-items-start">
             
@@ -50,18 +57,18 @@ const Header = () => {
               
             </button>
           </div>
-              <Logo />
+              <Logo onClose={handleCloseButtonClick}/>
               <div className="text-center">
-            {user && user.isAdmin ? "" : <RedesSociales />}
+            {user && user.isAdmin ? "" : <RedesSociales onClose={handleCloseButtonClick}/>}
             <div>
               {isLoggedIn ? (
                 user && user.isAdmin ? (
-                  <HeaderAdmin />
+                  <HeaderAdmin onClose={handleCloseButtonClick} />
                 ) : (
-                  <HeaderUser user={user} />
+                  <HeaderUser user={user} onClose={handleCloseButtonClick} />
                 )
               ) : (
-                <ButtonsLink />
+                <ButtonsLink onClose={handleCloseButtonClick} />
               )}
             </div>
           </div>

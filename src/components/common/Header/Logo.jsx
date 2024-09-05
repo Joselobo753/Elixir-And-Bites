@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-const Logo = () => {
+const Logo = (onClose) => {
   return (
  
     <div className="position-relative text-center p-3">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/" onClick={onClose}>
         <img 
           src="/potion.svg"
             

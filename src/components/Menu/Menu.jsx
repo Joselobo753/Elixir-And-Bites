@@ -6,6 +6,7 @@ import FooterNavbar from "../FooterNavbar/FooterNavBar";
 import { useEffect, useState } from "react";
 import CartModal from "../FooterNavbar/CartModal";
 import PropTypes from "prop-types"; 
+import Loading from "../common/Loading/Loading";
 
 const Menu = () => {
   const [cart, setCart] = useState([]);
@@ -98,7 +99,7 @@ const Menu = () => {
   };
 
   if (isLoading) {
-    return <p className="mt-2 text-center">Cargando datos...</p>;
+    return <p className="d-flex justify-content-center align-items-center vh-100"><Loading/></p>;
   }
 
   if (isError) {
