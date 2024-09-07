@@ -99,7 +99,7 @@ const Menu = () => {
   };
 
   if (isLoading) {
-    return <p className="d-flex justify-content-center align-items-center vh-100"><Loading/></p>;
+    return <div className="d-flex justify-content-center align-items-center vh-100"><Loading/></div>;
   }
 
   if (isError) {

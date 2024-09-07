@@ -8,7 +8,6 @@
  
   flex-direction: column;
   align-items: center;
-  max-width: 400px;
   margin: 0 auto;
 }
 
@@ -243,9 +242,45 @@ select.error:focus {
   border-radius: 20px;
   border: 1px solid green ;
 }
-@media (max-width: 768px) {
-  .admin-form {
-    max-width: 100%;
-    margin: 0 auto;
-  }
+.table-custom {
+  width: 100%;
+  border-collapse: separate; /* Permite bordes redondeados */
+  border-spacing: 0; /* Elimina el espacio entre celdas */
+  box-shadow: 0 4px 8px 0 rgb(200 165 253 / 55%);
+  border-radius: 8px; /* Bordes redondeados */
+  background-color: #1c1c1c; /* Color principal de la tabla */
+  overflow: hidden; /* Esconde los bordes redondeados internos */
+  border-top: 1px solid #ffeb3b;
+}
+
+.table-custom th,
+.table-custom td {
+  padding: 12px 15px; /* Espacio interno en las celdas */
+  border: none; /* Elimina los bordes internos */
+  color: #fff; /* Color del texto */
+}
+.table-custom tr {
+}
+.table-custom thead th {
+  background-color: #121212; /* Color del encabezado */
+}
+
+.table-custom tbody tr:nth-child(even) {
+  background-color: #1c1c1c; /* Color para filas pares */
+}
+
+.table-custom tbody tr:nth-child(odd) {
+  background-color: #121212; /* Color para filas impares */
+}
+
+
+
+.table-custom tbody {
+  border-top-left-radius: 8px; /* Bordes redondeados superiores */
+  border-bottom-left-radius: 8px; /* Bordes redondeados inferiores */
+}
+
+.imgTable{
+  width: 75px;
+  object-fit: cover;
 }
