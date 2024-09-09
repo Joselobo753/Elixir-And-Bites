@@ -138,7 +138,7 @@ const ProductForm = ({ initialData, onSubmit, onCancel, register, handleSubmit, 
       </div>
       <div className="form-group pt-3 mt-auto d-flex justify-content-around">
         <div className="col-12 d-flex justify-content-around mt-4">
-          <button className="btn btn-light me-2" type="submit">
+          <button className="button-card" type="submit">
             {initialData ? "Actualizar Producto" : "Agregar Producto"}
           </button>
           <button

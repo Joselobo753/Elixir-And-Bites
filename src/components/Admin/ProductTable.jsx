@@ -5,10 +5,13 @@ import Button from "react-bootstrap/Button";
 import Swal from "sweetalert2";
 import "./Admin.css";
 
-const ProductTable = ({ products, onEdit, onDelete }) => {
+const ProductTable = ({ products, onEdit, onDelete, onReload }) => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 10;
+  const handleReload = () => {
+    onReload(); // Llama a la función que actualiza los productos
+  };
 
   const handleView = (product) => {
     setSelectedProduct(product);
@@ -182,6 +185,7 @@ ProductTable.propTypes = {
   ).isRequired,
   onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
+  onReload: PropTypes.func
 };
 
 export default ProductTable;

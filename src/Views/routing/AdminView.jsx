@@ -48,14 +48,8 @@ const AdminView = () => {
   };
 
   const handleEditProduct = (product) => {
-    setEditingProduct(null);
+    setEditingProduct(product);
     reset(product);  // Aquí reseteas el formulario con los datos del producto seleccionado
-  };
-  // Actualiza esta función
-  const handleCancelEdit = () => {
-    console.log("esto deberia andar")
-    setEditingProduct(null);  // Asegúrate de que el estado de edición se restablezca
-    reset();  // Limpia los campos del formulario
   };
 
   const handleUpdateProduct = async (updatedProduct) => {
@@ -84,7 +78,7 @@ const AdminView = () => {
       toast.success('Se elimino el producto correctamente');
     } catch (error) {
       console.error("Error al eliminar el producto:", error);
-      toast.error('Error al eliminar el producto');
+      toast.error('Error al eliminar');
     }
   };
 
@@ -99,7 +93,7 @@ const AdminView = () => {
         <div className='px-2'>
           <ProductForm
             initialData={editingProduct}
-            onCancel={handleCancelEdit} 
+            onCancel={() => setEditingProduct(null)}
             onSubmit={editingProduct ? handleUpdateProduct : handleAddProduct}
             register={register}  // Pasamos register como prop
             handleSubmit={handleSubmit}  // Pasamos handleSubmit como prop

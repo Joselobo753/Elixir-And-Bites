@@ -3,7 +3,7 @@ import ButtonsLink from "./buttonsLink"
 import "./header.css"
 import Swal from 'sweetalert2/src/sweetalert2.js';
 import { useSession } from '../../../constans/Stores/useSesion';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HeaderUser = ({user,onClose}) => {
   const {logout} = useSession()
@@ -31,7 +31,12 @@ const HeaderUser = ({user,onClose}) => {
         <h2>Bienvenido {user.name}</h2>
         <ButtonsLink/>
         <div className="d-flex justify-content-between py-5 px-3">
+          
+        <Link className="navbar-brand" to="/404" onClick={onClose}>
+          
+         
             <button className="btn btn-dark">Editar usuario</button>
+            </Link>
             <button className="button-cerrar" onClick={handleLogout}>cerrar sesion</button>
         </div>
         </section>
