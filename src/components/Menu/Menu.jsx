@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import CartModal from "../FooterNavbar/CartModal";
 import PropTypes from "prop-types"; 
 import Loading from "../common/Loading/Loading";
+import ModalLR from "../common/LogReg/ModalLR";
 
 const Menu = () => {
   const [cart, setCart] = useState([]);
@@ -99,7 +100,7 @@ const Menu = () => {
   };
 
   if (isLoading) {
-    return <p className="d-flex justify-content-center align-items-center vh-100"><Loading/></p>;
+    return <div className="d-flex justify-content-center align-items-center vh-100"><Loading/></div>;
   }
 
   if (isError) {
@@ -164,6 +165,7 @@ const Menu = () => {
           />
         )}
       </div>
+      <ModalLR/>
     </>
   );
 };

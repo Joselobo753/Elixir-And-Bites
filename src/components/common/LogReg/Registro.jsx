@@ -25,7 +25,7 @@ const Registro = ({ closeModal }) => {
       closeModal("modalLR")
       closeModal("modalLR")
         navigate("/menu");
-
+        window.location.reload();
       reset();
     },
   });

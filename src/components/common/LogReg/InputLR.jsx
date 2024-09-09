@@ -5,10 +5,10 @@ const getRandomChar = () => {
   return chars.charAt(Math.floor(Math.random() * chars.length));
 };
 const InputLR = (props) => {
-  const { name, type = "text", error, register, options, placeholder = "Ingrese un texto", icon } = props;
+  const { name, type = "text", error, register, options, placeholder = "Ingrese un texto", icon,divClass = "" } = props;
   const randomChar = getRandomChar();
   return (
-    <div className="form-group">
+    <div className={`form-group ${divClass}`}>
       <input
         className={` ${error ? "form-style-error" : "form-style pb-2"}`}
         id={`${name}-${randomChar}-input`}
@@ -32,6 +32,7 @@ InputLR.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
   label: PropTypes.string.isRequired,
+  divClass: PropTypes.string,
   error: PropTypes.shape({
     message: PropTypes.string,
   }),
