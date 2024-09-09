@@ -6,30 +6,38 @@ import { useMutation } from "@tanstack/react-query";
 import { postLoginFn } from "../../../api/auth";
 import PropTypes from 'prop-types';
 import { useState } from "react";
+import Loading from "../Loading/Loading";
 
 const Login = ({ closeModal }) => {
   const [titleText, settitleText] = useState("Ingresar");
+  const [isLoading, setIsLoading] = useState(false);
   const { login } = useSession();
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
   const { mutate: postLogin } = useMutation({
     mutationFn: postLoginFn,
+    onMutate:()=>{
+      setIsLoading(true); 
+      settitleText("Logueando...");
+    },
     onSuccess: (userData) => {
       login(userData);
+      setIsLoading(false); 
       closeModal("modalLR")
-      closeModal("modalLR")
+      closeModal()
         closeModal()
         navigate("/menu");
-      
+        window.location.reload();
     },
     onError: () => {
+      setIsLoading(false); 
       settitleText("La contraseña o email incorrecto");
       
     },
   });
 
   const onSubmitHandler = (data) => {
-    console.log(data);
+  
     postLogin(data);
   };
 
@@ -72,7 +80,14 @@ const Login = ({ closeModal }) => {
             placeholder="Contraseña"
             icon="bi bi-lock-fill"
           />
-          <button className="button-submit" type="submit">Ingresar</button>
+         {isLoading ? (
+        <div className="d-flex justify-content-center align-items-center flex-column vh-100">
+        <p className="text-white mb-3">Logueando... suele demorar</p>
+        <Loading />
+      </div>
+          ) : (
+            <button className="button-submit" type="submit">Ingresar</button>
+          )}
         </form>
       </div>
     </div>

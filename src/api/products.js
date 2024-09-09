@@ -33,18 +33,23 @@ export const createProduct = async (productData) => {
 
 export const updateProduct = async (productId, updatedData) => {
   try {
+    // Excluir el campo 'id' del objeto updatedData
+    const { id, ...dataWithoutId } = updatedData; 
+
     const res = await fetch(`${BACKEND_URL}/products/${productId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(updatedData),
+      body: JSON.stringify(dataWithoutId), // Enviar solo los datos necesarios sin el 'id'
     });
+
     if (!res.ok) {
-      const errorResponse = await res.json(); 
+      const errorResponse = await res.json();
       console.error("Error en el backend:", errorResponse);
       throw new Error("Error al actualizar el producto");
     }
+
     const updatedProduct = await res.json();
     return updatedProduct;
   } catch (error) {

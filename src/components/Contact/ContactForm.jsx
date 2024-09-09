@@ -168,7 +168,7 @@ const ContactForm = () => {
             options={{
               required: { value: true, message: "El mensaje es requerido" },
               minLength: { value: 10, message: "El campo mensaje debe tener al menos 10 caracteres" },
-              maxLength: { value: 500, message: "El campo mensaje debe tener un máximo de 500 caracteres" },
+              maxLength: { value: 300, message: "El campo mensaje debe tener un máximo de 300 caracteres" },
               pattern: {
                 value: /^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9\s.,!?()-]+$/,
                 message: "El campo mensaje solo puede contener letras, números y ciertos caracteres de puntuación (. , ! ? () -)"
@@ -182,7 +182,7 @@ const ContactForm = () => {
             register={register}
             textarea
             placeholder="Escriba un mensaje, recuerde, aquí no se piden los números a las camareras"
-            maxLength={500}
+            maxLength={300}
             resetCount={resetCount}
           />
         </div>
